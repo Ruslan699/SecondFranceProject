@@ -1,0 +1,50 @@
+﻿@using PapaStreet.Common.Resources
+@using PapaStreet.WebUI.Security
+@using PapaStreet.Common.Constants
+@model IEnumerable<PapaStreet.WebUI.Models.AnnouncementModel>
+@{ 
+    int status = Convert.ToInt32(Request.QueryString["status"]);
+}
+<section class="section-padding bg-dark inner-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h1 class="mt-0 mb-3">@UI.ActiveMyAnnouncement</h1>
+                <div class="breadcrumbs">
+                    <p class="mb-0"><a href="@Url.Action("Index", "Home")"><i class="mdi mdi-home-outline"></i> @UI.Home</a> /  @UI.ActiveMyAnnouncement</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-4 user-side-bar">
+                <div class="list-group mb-4">
+                    <a class="list-group-item list-group-item-action" href="@Url.Action("profil","customer",new {id = Identity.Customer.Id })"><span class="mdi mdi-account"></span> @UI.UserProfile</a>
+                    <a class="list-group-item list-group-item-action @(status == (int)Enums.Status.Active ? "active" : "")" href="@Url.Action("myannounce","announcement",new {id = Identity.Customer.Id, status = (int)Enums.Status.Active })"><span class="mdi mdi-home-account"></span> @UI.ActiveMyAnnouncement</a>
+                    <a class="list-group-item list-group-item-action @(status == (int)Enums.Status.Deactive ? "active" : "")" href="@Url.Action("myannounce","announcement",new {id = Identity.Customer.Id, status = (int)Enums.Status.Deactive })"><span class="mdi mdi-home-account"></span> @UI.DeactiveMyAnnouncement</a>
+                    <a class="list-group-item list-group-item-action @(status == (int)Enums.Status.Deleted ? "active" : "")" href="@Url.Action("myannounce","announcement",new {id = Identity.Customer.Id, status = (int)Enums.Status.Deleted })"><span class="mdi mdi-home-account"></span> @UI.DeleteMyAnnouncement</a>
+                    <a class="list-group-item list-group-item-action @(status == (int)Enums.Status.Pending ? "active" : "")" href="@Url.Action("myannounce","announcement",new {id = Identity.Customer.Id, status = (int)Enums.Status.Pending })"><span class="mdi mdi-home-account"></span> @UI.WaitingMyAnnouncement</a>
+
+                </div>
+            </div>
+            <div class="col-lg-8 col-md-9">
+                <div class="row">
+                    @foreach (var item in Model)
+                    {
+                        @Html.Partial("Partials/MyAnnouncePartials/_MyAnnouncePartial", item)
+                    }
+                </div>
+                @if (Model.Count() >= 5) 
+                {
+                    @Html.Partial("Partials/MyAnnouncePartials/_PaginationPartial")
+                }
+
+            </div>
+        </div>
+    </div>
+</section>
+

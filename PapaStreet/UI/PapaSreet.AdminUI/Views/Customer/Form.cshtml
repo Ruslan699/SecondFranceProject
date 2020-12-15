@@ -1,0 +1,30 @@
+﻿@using PapaStreet.Common.Resources
+@model PapaSreet.AdminUI.Models.CustomerViewModel
+
+@{
+    ViewBag.Title = "Form";
+}
+
+<div class="card">
+    <div class="card-header header-elements-inline">
+        <div class="header-elements">
+            <div class="list-icons">
+                <a class="list-icons-item" data-action="collapse"></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+        function OnSuccess(data) {
+            if (data.IsSucceed)
+                location.href = '@Url.Action("Index", "Customer")';
+            else {
+                var result = data.FailureResult.join(', ');
+                alert(result);
+            }
+        }
+
+    </script>
+    }

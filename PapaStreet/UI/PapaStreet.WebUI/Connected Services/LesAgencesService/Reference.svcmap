@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="2353515d-84d2-4270-9672-c48ca01f0c6d" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:56624/PropertyService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="Service1.wsdl" MetadataType="Wsdl" ID="1fd7eb82-efde-4f2e-9dac-5b7ce19f27d2" SourceId="1" SourceUrl="http://localhost:56624/PropertyService.svc?wsdl" />
+    <MetadataFile FileName="PropertyService.xsd" MetadataType="Schema" ID="add6ef0a-12a7-473c-803c-11c2acf45355" SourceId="1" SourceUrl="http://localhost:56624/PropertyService.svc?xsd=xsd1" />
+    <MetadataFile FileName="PropertyService1.xsd" MetadataType="Schema" ID="f3daaec1-c0ea-43ea-9e51-3c01ab6b7eca" SourceId="1" SourceUrl="http://localhost:56624/PropertyService.svc?xsd=xsd2" />
+    <MetadataFile FileName="PropertyService2.xsd" MetadataType="Schema" ID="907b80f0-e345-4147-8cef-4895cc4eab60" SourceId="1" SourceUrl="http://localhost:56624/PropertyService.svc?xsd=xsd0" />
+    <MetadataFile FileName="PropertyService.disco" MetadataType="Disco" ID="0837fa45-3313-40bd-aed3-de99d545fe07" SourceId="1" SourceUrl="http://localhost:56624/PropertyService.svc?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

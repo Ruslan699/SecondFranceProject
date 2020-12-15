@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Login</title>
+    @Styles.Render("~/Content/template")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="page-content">
+        <div class="content-wrapper">
+            <div class="content d-flex justify-content-center align-items-center">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryUnobtrusive")
+    @Scripts.Render("~/bundles/template")
+    @Scripts.Render("~/bundles/site")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

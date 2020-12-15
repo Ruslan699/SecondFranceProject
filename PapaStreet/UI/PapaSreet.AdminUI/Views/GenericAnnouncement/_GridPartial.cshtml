@@ -1,0 +1,68 @@
+﻿@using PapaStreet.Common.Resources
+@(Html.DevExtreme().DataGrid<PapaStreet.BLL.DTOs.GenericAnnouncementDto>()
+                .ID("usersGridContainer")
+                .DataSource(d => d.Mvc().Controller("GenericAnnouncement").LoadAction("Data").Key("Id"))
+                .RemoteOperations(false)
+                .AllowColumnReordering(true)
+                .RowAlternationEnabled(true)
+                .FilterRow(filterRow => filterRow.Visible(true).ApplyFilter(GridApplyFilterMode.Auto))
+                .ShowBorders(true)
+                .Paging(p => p.PageSize(10))
+                .Pager(p => p.ShowPageSizeSelector(true).AllowedPageSizes(new int[] { 10, 20, 50 }))
+                //.SearchPanel(s => s.Visible(true).HighlightCaseSensitive(true))
+                .Scrolling(scrolling => scrolling.Mode(GridScrollingMode.Standard))
+                //.Export(e => e.Enabled(true).FileName($"UsersGrid-{DateTime.Now.ToString()}"))
+                .ColumnMinWidth(120)
+                //.HeaderFilter(headerFilter => headerFilter.Visible(true))
+                .Columns(columns =>
+                {
+
+                    columns.AddFor(m => m.Title)
+                        .Caption(UI.Title);
+
+                    columns.AddFor(m => m.Description)
+                      .Caption(UI.Description);
+
+                    columns.AddFor(m => m.HostSite)
+                    .Caption(UI.HostSite);
+
+                    columns.AddFor(m => m.HostSite)
+                    .Caption(UI.HostSite);
+
+                    columns.AddFor(m => m.Owner)
+                    .Caption(UI.Ownership);
+
+                    columns.AddFor(m => m.LinkUrl)
+                    .Caption(UI.LinkUrl);
+
+                    columns.AddFor(m => m.AnnouncementType.Name)
+                    .Caption(UI.AnnouncementType);
+
+                    columns.AddFor(m => m.PropertyType.Name)
+                    .Caption(UI.PropertyType);
+
+                    columns.AddFor(m => m.StatusName)
+                    .Caption(UI.Status)
+                    .AllowFiltering(false)
+                    .AllowSorting(false)
+                    .AllowHeaderFiltering(true)
+                    .CellTemplate(@<text>
+                    <span class="<%=value%>"><%=value%></span>
+                    </text>);
+
+             columns.AddFor(m => m.Id)
+                 .Caption(UI.Operations)
+                 .Width(150)
+                 .AllowFiltering(false)
+                 .AllowSorting(false)
+                 .CellTemplate(@<text>
+
+                    <button class="btn btn-sm btn-danger"
+                            onclick="ShowRemoveModal('@Url.Action("Remove", "City")', '<%=value%>')">
+                        <i class="icon-trash"></i>
+                    </button>
+
+                </text>);
+
+                })
+)

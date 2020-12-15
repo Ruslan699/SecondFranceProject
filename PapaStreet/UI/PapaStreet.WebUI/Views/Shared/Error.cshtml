@@ -1,0 +1,31 @@
+﻿@using PapaStreet.Common.Resources
+<!-- End Navbar -->
+<section class="section-padding bg-dark inner-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h1 class="mt-0 mb-3">Server Xetasi</h1>
+                <div class="breadcrumbs">
+                    <p class="mb-0"><a href="@Url.Action("Index","Home")"><i class="mdi mdi-home-outline"></i> @UI.Home</a> /  Page Not Found</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 404 Page -->
+<section class="section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-8 mx-auto text-center">
+                <h1><img class="img-fluid" src="~/Content/img/404.png" alt="404"></h1>
+                <h1>Sorry! Page not found.</h1>
+                <p class="land">Unfortunately the page you are looking for has been moved or deleted.</p>
+                <div class="mt-5">
+                    <button onclick="window.history.back();" class="btn btn-secondary btn-lg"><i class="mdi mdi-home"></i> GO TO HOME PAGE</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End 404 Page -->

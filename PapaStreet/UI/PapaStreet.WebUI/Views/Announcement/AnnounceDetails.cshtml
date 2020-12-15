@@ -1,0 +1,468 @@
+﻿@using PapaStreet.Common.Resources
+@model PapaStreet.WebUI.Models.AnnouncementModel
+
+@section Styles
+    {
+    <link href="~/Content/jquery.fancybox.min.css" rel="stylesheet" />
+    <link href="~/App/jssor.slider.css" rel="stylesheet" />
+}
+
+@{
+    ViewBag.Url = Context.Request.Url;
+    ViewBag.Type = "product";
+    ViewBag.Title = Html.Raw(Model.Title);
+    ViewBag.Description = Model.PropertyDescription;
+    List<string> PropertyImages = new List<string>();
+    foreach (var item in Model.AnnouncementImages)
+    {
+        PropertyImages.Add(item.Base64StringImage);
+    }
+    ViewBag.Images = PropertyImages;
+}
+
+<section class="section-padding bg-dark inner-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h1 class="mt-0 mb-3">@UI.Announcements</h1>
+                <div class="breadcrumbs">
+                    <p class="mb-0"><a href="@Url.Action("Index", "Home")"><i class="mdi mdi-home-outline"></i> @UI.Home</a> /  @UI.Announcements</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="samar-slider">
+    <div class="property-single-title property-single-title-gallery">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-8">
+                    <h1>@Html.Raw(Model.Title)</h1>
+                    <h6><i class="mdi mdi-home-map-marker"></i> @Model.Address</h6>
+                </div>
+                <div class="col-lg-4 col-md-4 text-right">
+                    <h6 class="mt-2">@Model.AnnouncementType.Name</h6>
+                    <h2 class="text-primary">
+                        @{
+                            string price = Model.Amount.ToString("0");
+                        }
+                        @price €
+                    </h2>
+                </div>
+            </div>
+            <hr>
+
+            <!--Start Facebook Share-->
+            <div id="fb-root"></div>
+            <script async defer crossorigin="anonymous" src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v3.3&appId=2416193921781343&autoLogAppEvents=1"></script>
+            <!--End Facebook Share-->
+            @*<div class="fb-share-button" data-href="@Context.Request.Url" data-layout="button" data-size="small">
+                    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=@Context.Request.Url" class="fb-xfbml-parse-ignore">Partager</a>
+                </div>*@
+            <div class="row">
+                <div class="col-lg-8 col-md-8">
+                    <p class="mt-1 mb-0">
+                        <strong>@UI.AnnouncementCode</strong> : @Model.Id &nbsp;&nbsp;
+                        <i class="mdi mdi-eye text-danger"></i><strong>@UI.NumberOfView : </strong>@Model.ViewsCount &nbsp;&nbsp;
+                        <i class="mdi mdi-calendar text-danger"></i>@*<strong>Elanın tarixi : </strong>*@ @String.Format("{0:MM.dd.yyyy}", Model.CreatedDate)
+                    </p>
+                </div>
+                <div class="col-lg-4 col-md-4 text-right">
+                    <div class="footer-social">
+                        <span>Partager :</span> &nbsp;
+                        <a class="btn-facebook" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=@Context.Request.Url"><i class="mdi mdi-facebook"></i></a>
+                        <a class="btn-twitter" href="https://twitter.com/intent/tweet?text=@Context.Request.Url"><i class="mdi mdi-twitter"></i></a>
+                        <a class="btn-instagram" href="#"><i class="mdi mdi-instagram"></i></a>
+                        <a class="btn-whatsapp" href="#"><i class="mdi mdi-whatsapp"></i></a>
+                        <a class="btn-messenger" href="#"><i class="mdi mdi-facebook-messenger"></i></a>
+                        <a class="btn-google" href="#"><i class="mdi mdi-google"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Property Single Slider header -->
+<!-- Property Single Slider -->
+<section class="section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-8">
+                <div class="car property-single-slider">
+
+                    <!--Start Jossor Slider-->
+
+
+                    <div class="">
+                        <div id="jssor_1" style="position:relative;margin:0 auto;top:0px;left:0px;width:980px;height:600px;overflow:hidden;visibility:hidden;">
+                            <!-- Loading Screen -->
+                            <div data-u="loading" class="jssorl-009-spin" style="position:absolute;top:0px;left:0px;width:100%;height:100%;text-align:center;background-color:rgba(0,0,0,0.7);">
+                                <img style="margin-top:-19px;position:relative;top:50%;width:38px;height:38px;" src="~/Content/img/svg/loading/static-svg/spin.svg" />
+                            </div>
+                            <div data-u="slides" id="detailSlider" style="cursor:default;position:relative;top:0px;left:0px;width:980px;height:500px;overflow:hidden;">
+
+                                @foreach (var image in Model.AnnouncementImages)
+                                {
+
+                                    <div style="text-align:center;background-color:#1c2331;padding:10px">
+                                        <a href="@image.Base64StringImage" data-fancybox="images" data-caption="">
+                                            <img style="width:auto;height:100% !important;" src="@image.Base64StringImage" />
+                                        </a>
+                                        <img data-u="thumb" src="@image.Base64StringImage" />
+                                    </div>
+
+                                    @*<div class="carousel-item rounded" style="background-image: url(@image.Base64StringImage)"></div>*@
+                                }
+
+
+
+                                @*@foreach (var item in Model.PropertyImageIds)
+
+                                    {
+                                        <div style="text-align:center;background-color:#1c2331;padding:10px">
+                                            <a href="@Url.Action("GetPropertyImage", "Property", new { id = item })" data-fancybox="images" data-caption="">
+                                                <img style="width:auto;height:100% !important;" src="@Url.Action("GetPropertyImage", "Property", new { id = item })" />
+                                            </a>
+                                            <img data-u="thumb" src="@Url.Action("GetPropertyImage", "Property", new { id = item })" />
+                                        </div>
+                                    }*@
+
+                            </div>
+                            <!-- Thumbnail Navigator -->
+                            <div data-u="thumbnavigator" class="jssort101" style="position:absolute;left:0px;bottom:0px;width:980px;height:100px;background-color:#000;" data-autocenter="1" data-scale-bottom="0.75">
+                                <div data-u="slides">
+                                    <div data-u="prototype" class="p" style="width:190px;height:84px;">
+                                        <div data-u="thumbnailtemplate" class="t"></div>
+                                        <svg viewBox="0 0 16000 16000" class="cv">
+                                            <circle class="a" cx="8000" cy="8000" r="3238.1"></circle>
+                                            <line class="a" x1="6190.5" y1="8000" x2="9809.5" y2="8000"></line>
+                                            <line class="a" x1="8000" y1="9809.5" x2="8000" y2="6190.5"></line>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Arrow Navigator -->
+                            <div data-u="arrowleft" class="jssora106" style="width:55px;height:55px;top:262px;left:30px;" data-scale="0.75">
+                                <svg viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                                    <circle class="c" cx="8000" cy="8000" r="6260.9"></circle>
+                                    <polyline class="a" points="7930.4,5495.7 5426.1,8000 7930.4,10504.3 "></polyline>
+                                    <line class="a" x1="10573.9" y1="8000" x2="5426.1" y2="8000"></line>
+                                </svg>
+                            </div>
+                            <div data-u="arrowright" class="jssora106" style="width:55px;height:55px;top:262px;right:30px;" data-scale="0.75">
+                                <svg viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                                    <circle class="c" cx="8000" cy="8000" r="6260.9"></circle>
+                                    <polyline class="a" points="8069.6,5495.7 10573.9,8000 8069.6,10504.3 "></polyline>
+                                    <line class="a" x1="5426.1" y1="8000" x2="10573.9" y2="8000"></line>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!--End Jossor Slider-->
+                    @*<div class="card-body samar-slider pl-0 pr-0 pt-0 pb-0">
+                            <div id="samarsliderz" class="carousel slide" data-ride="carousel">
+                                <ol class="carousel-indicators">
+                                    @{ int x = 0;}
+                                    @foreach (var image in Model.AnnouncementImages)
+                                    {
+
+                                        <li data-target="#samarsliderz" data-slide-to="@x"></li>
+                                        x += 1;
+                                    }
+
+                                </ol>
+                                <div class="carousel-inner" role="listbox">
+                                    @foreach (var image in Model.AnnouncementImages)
+                                    {
+                                        <div class="carousel-item rounded" style="background-image: url(@image.Base64StringImage)"></div>
+                                    }
+                                </div>
+                                <a class="carousel-control-prev" href="#samarsliderz" role="button" data-slide="prev">
+                                    <span class="carousel-control-prev-icon"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="carousel-control-next" href="#samarsliderz" role="button" data-slide="next">
+                                    <span class="carousel-control-next-icon"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </div>
+                        </div>*@
+
+                </div>
+                <div class="card padding-card property-single-slider">
+                    <div class="card-body">
+                        <h5 class="card-title mb-3">@UI.BasicInformation</h5>
+                        <div class="row">
+                            @if (@Model.PropertyType != null)
+                            {
+                                <div class="col-lg-4 col-md-4">
+                                    <div class="list-icon">
+                                        <i class="mdi mdi-sofa"></i>
+                                        <strong>@UI.PropertyType:</strong>
+                                        <p class="mb-0">@Model.PropertyType.Name</p>
+                                    </div>
+                                </div>
+                            }
+
+                            @if (Model.Area > 0)
+                            {
+                                <div class="col-lg-4 col-md-4">
+                                    <div class="list-icon">
+                                        <i class="mdi mdi-move-resize-variant"></i>
+                                        <strong>@UI.Area:</strong>
+                                        <p class="mb-0">
+                                            @{
+                                                string area = Model.Area.ToString("0");
+                                            }
+                                            @area
+                                            m<sup>2</sup>
+                                        </p>
+                                    </div>
+                                </div>
+                            }
+                            @if (Model.RoomCount > 0)
+                            {
+                                <div class="col-lg-4 col-md-4">
+                                    <div class="list-icon">
+                                        <i class="mdi mdi-garage"></i>
+                                        <strong>@UI.RoomCount:</strong>
+                                        <p class="mb-0">@Model.RoomCount</p>
+                                    </div>
+                                </div>
+                            }
+                            @if (Model.CurrentFloor > 0)
+                            {
+                                <div class="col-lg-4 col-md-4">
+                                    <div class="list-icon">
+                                        <i class="mdi mdi-home"></i>
+                                        <strong>@UI.CurrentFloor:</strong>
+                                        <p class="mb-0">@Model.CurrentFloor</p>
+                                    </div>
+                                </div>
+                            }
+                            @if (Model.FloorCount > 0)
+                            {
+                                <div class="col-lg-4 col-md-4">
+                                    <div class="list-icon">
+                                        <i class="mdi mdi-floor-plan"></i>
+                                        <strong>@UI.FloorCount:</strong>
+                                        <p class="mb-0">@Model.FloorCount</p>
+                                    </div>
+                                </div>
+                            }
+                            @if (Model.AnnouncementAddition != null)
+                            {
+                                <div class="col-lg-12 col-md-12">
+                                    <hr />
+                                    <div class="row">
+                                        @foreach (var item in Model.AnnouncementAdditionals)
+                                        {
+                                            <div class="col-lg-4 col-md-4">
+                                                <ul class="sidebar-card-list">
+                                                    <li><a><i class="mdi mdi-checkbox-marked-outline text-success"></i> @item</a></li>
+                                                </ul>
+                                            </div>
+                                        }
+                                    </div>
+                                    <hr />
+                                </div>
+                            }
+
+                        </div>
+                        <p class="mb-0">@Model.PropertyDescription</p>
+                    </div>
+                </div>
+
+                <div class="card padding-card reviews-card property-single-slider">
+                    <div class="card-body">
+                        @*<h5 class="card-title mb-4">Leave a Review</h5>*@
+                        <div class="media mb-4">
+                            <div class="fb-comments" data-href="@Context.Request.Url" data-width="100%" data-numposts="5"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-lg-4 col-md-4">
+                <div class="card sidebar-card property-single-slider">
+                    <div class="card-body">
+                        <h5 class="card-title mb-4">@UI.ContactPerson</h5>
+                        <div class="about-agent">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <div class="card card-list">
+                                        <a href="#">
+                                            @*<img class="card-img-top" src="img/agent.jpg" alt="Card image cap">*@
+                                            <div class="card-body pb-0 about-agent-info">
+                                                <h5 class="card-title mb-4">@Model.ContactPerson (@Model.VendorType)</h5>
+                                                @foreach (var item in Model.PhoneNumbers.ToList())
+                                                {
+                                                    <h6 class="card-subtitle mb-3 text-muted"><i class="mdi mdi-phone"></i> @item.Number</h6>
+                                                }
+                                                <h6 class="card-subtitle mb-3 text-muted"><i class="mdi mdi-email"></i> @Model.Email</h6>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @*<div class="card sidebar-card property-single-slider">
+                        <div class="card-body">
+                            <h5 class="card-title mb-4">Request a Showing</h5>
+                            <form name="sentMessage">
+                                <div class="control-group form-group">
+                                    <div class="controls">
+                                        <label>Your Name <span class="text-danger">*</span></label>
+                                        <input type="text" placeholder="Enter Your Name" class="form-control" required>
+                                    </div>
+                                </div>
+                                <div class="control-group form-group">
+                                    <div class="controls">
+                                        <label>Your Email <span class="text-danger">*</span></label>
+                                        <input type="text" placeholder="Enter Your Email" class="form-control" required>
+                                    </div>
+                                </div>
+                                <div class="control-group form-group">
+                                    <div class="controls">
+                                        <label>Phone <span class="text-danger">*</span></label>
+                                        <input type="text" placeholder="Enter Phone Number" class="form-control" required>
+                                    </div>
+                                </div>
+                                <div class="control-group form-group">
+                                    <div class="controls">
+                                        <label>Message <span class="text-danger">*</span></label>
+                                        <textarea rows="5" cols="50" class="form-control"></textarea>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-secondary btn-lg btn-block">SEND REQUEST</button>
+                            </form>
+                        </div>
+                    </div>*@
+                <div class="card sidebar-card property-single-slider">
+                    <div class="card-body">
+                        <h5 class="card-title mb-4">@UI.LatestAnnouncements</h5>
+                        <div id="featured-properties" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                @{
+                                    int length = ((IEnumerable<PapaStreet.WebUI.Models.AnnouncementModel>)ViewBag.LastAnnounces).Count();
+                                    for (int i = 0; i < length; i++)
+                                    {
+                                        <li data-target="#featured-properties" data-slide-to="@i" class="active"></li>
+                                    }
+                                }
+                            </ol>
+                            <div class="carousel-inner">
+                                @foreach (var item in (IEnumerable<PapaStreet.WebUI.Models.AnnouncementModel>)ViewBag.LastAnnounces)
+                                {
+                                    <div class="carousel-item">
+                                        <div class="card card-list">
+                                            <a href="@Url.Action("items","announcement",new { id=@item.Id})">
+                                                <div class="card-img">
+                                                    <div class="badge images-badge"><i class="mdi mdi-image-filter"></i> @item.AnnouncementImages.Count</div>
+                                                    <span class="badge badge-success">@item.AnnouncementType.Name</span>
+                                                    <img class="card-img-top" style="height:184px" src="@item.AnnouncementImages.FirstOrDefault().Base64StringImage" alt="Card image cap">
+                                                </div>
+                                                <div class="card-body">
+                                                    <h2 class="text-primary mb-2 mt-0">
+                                                        @{
+                                                            string leftprice = item.Amount.ToString("0");
+                                                        }
+                                                        @leftprice €
+                                                    </h2>
+                                                    <h5 class="card-title mb-2">@item.City.Name</h5>
+                                                    <h6 class="card-subtitle mt-1 mb-0 text-muted"><i class="mdi mdi-home-map-marker"></i> @item.Address</h6>
+                                                </div>
+                                                <div class="card-footer">
+                                                    <span><i class="mdi mdi-home-modern"></i> @item.PropertyType.Name</span>
+                                                    <span><i class="mdi mdi-scale-bathroom"></i> @UI.RoomCount : <strong>@item.RoomCount</strong></span>
+                                                    <span><i class="mdi mdi-move-resize-variant"></i> @UI.Area : <strong>@item.RoomCount</strong></span>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Property Single Slider -->
+<!-- Similar Properties -->
+@if (((IEnumerable<PapaStreet.WebUI.Models.AnnouncementModel>)ViewBag.SimilarAnnounces).Count() > 0)
+{
+    <section class="section-padding  border-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 section-title text-left mb-4">
+                    <h2>@UI.SimilarAnnuncements</h2>
+                </div>
+                @foreach (var item in (IEnumerable<PapaStreet.WebUI.Models.AnnouncementModel>)ViewBag.SimilarAnnounces)
+                {
+                    <div class="col-lg-3 col-md-3">
+                        <div class="card card-list">
+                            <a href="@Url.Action("items","announcement",new { id=@item.Id})">
+                                <div class="card-img">
+                                    <div class="badge images-badge"><i class="mdi mdi-image-filter"></i> @item.AnnouncementImages.Count</div>
+                                    <span class="badge badge-primary">@item.AnnouncementType.Name</span>
+                                    <img class="card-img-top" style="height:178px" src="@item.AnnouncementImages.FirstOrDefault().Base64StringImage" alt="Card image cap">
+                                </div>
+                                <div class="card-body">
+                                    <h2 class="text-primary mb-2 mt-0">
+                                        @{
+                                            string amount = item.Amount.ToString("0");
+                                        }
+                                        @amount €
+                                    </h2>
+                                    <h5 class="card-title mb-2">@item.Address</h5>
+                                    <h6 class="card-subtitle mt-1 mb-0 text-muted"><i class="mdi mdi-home-map-marker"></i> @item.City.Name</h6>
+                                </div>
+                                <div class="card-footer">
+                                    <span><i class="mdi mdi-home-modern"></i> @item.PropertyType.Name</span>
+                                    <span><i class="mdi mdi-scale-bathroom"></i> @UI.RoomCount : <strong>@item.RoomCount</strong></span>
+                                    <span><i class="mdi mdi-move-resize-variant"></i> @UI.Area : <strong>@item.RoomCount</strong></span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+}
+
+@section scripts
+        {
+    <script type="text/javascript" src="~/App/jssor.slider.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.fancybox.min.js"></script>
+
+    <script>
+        $('[data-fancybox="images"]').fancybox({
+            // Options will go here
+        });
+        $().fancybox({
+            selector: '.imglist a:visible'
+        });
+    </script>
+    <script type="text/javascript" src="~/App/jssorfunction.js"></script>
+    <script type="text/javascript">
+        jssor_1_slider_init();
+    </script>
+    <script>
+        $("#samarsliderz ol li").first().addClass("active");
+        $("#samarsliderz .carousel-inner div").first().addClass("active");
+        $("#featured-properties ol li").first().addClass("active");
+        $("#featured-properties .carousel-inner div").first().addClass("active");
+    </script>
+
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    @*<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5d6f9312ef303f6f"></script>*@
+
+}

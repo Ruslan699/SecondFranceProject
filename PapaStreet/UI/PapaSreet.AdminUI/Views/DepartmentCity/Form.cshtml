@@ -1,0 +1,62 @@
+﻿@using PapaStreet.Common.Resources
+@model PapaSreet.AdminUI.Models.DepartmentCityViewModel
+
+@{
+    ViewBag.Title = "Form";
+}
+
+<div class="card">
+    <div class="card-header header-elements-inline">
+        <div class="header-elements">
+            <div class="list-icons">
+                <a class="list-icons-item" data-action="collapse"></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-body">
+
+        @using (Ajax.BeginForm("Save", "DepartmentCity", FormMethod.Post, new AjaxOptions { OnSuccess = "OnSuccess", OnBegin = "OnLoading", OnFailure = "OnFailure" }))
+
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(m => m.Id)
+            @Html.HiddenFor(s => s.Status)
+            <div class="row">
+
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Departament)
+                        @Html.DropDownListFor(m => m.DepartamentId, new SelectList(ViewBag.Departments, "Id", "Name"), "----", new { @class = "form-control custom-select" })
+                        @Html.ValidationMessageFor(m => m.DepartamentId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.City)
+                        @Html.DropDownListFor(m => m.CityId, new SelectList(ViewBag.Cities, "Id", "Name"), "----", new { @class = "form-control custom-select" })
+                        @Html.ValidationMessageFor(m => m.CityId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex justify-content-start align-items-center">
+                <a href="@Url.Action("Index","DepartmentCity")" class="btn btn-light">@UI.Back</a>
+                <button type="submit" class="btn bg-blue ml-3">@UI.Confirm </button>
+            </div>
+        }
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        function OnSuccess(data) {
+            if (data.IsSucceed)
+                location.href = '@Url.Action("Index", "DepartmentCity")';
+            else {
+                var result = data.FailureResult.join(', ');
+                alert(result);
+            }
+        }
+    </script>
+    }

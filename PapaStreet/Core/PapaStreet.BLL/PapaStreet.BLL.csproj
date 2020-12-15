@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0B8E1A05-B540-46F2-BD83-AB93D09C2F3D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PapaStreet.BLL</RootNamespace>
+    <AssemblyName>PapaStreet.BLL</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentValidation, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\FluentValidation.8.0.0\lib\net45\FluentValidation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.Identity.Core.2.2.2\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.2\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.Identity.Owin.2.2.2\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.ComponentModel.Annotations.4.4.1\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.ComponentModel.Primitives, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.ComponentModel.Primitives.4.3.0\lib\net45\System.ComponentModel.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DTOs\AnnouncementDTOs\AnnouncementAdditionDto.cs" />
+    <Compile Include="DTOs\AnnouncementDTOs\AnnouncementDto.cs" />
+    <Compile Include="DTOs\AnnouncementDTOs\AnnouncementImageDto.cs" />
+    <Compile Include="DTOs\AnnouncementDTOs\AnnouncementTypeDto.cs" />
+    <Compile Include="DTOs\AnnouncementDTOs\DocumentTypeDto.cs" />
+    <Compile Include="DTOs\AnnouncementDTOs\PropertyTypeDto.cs" />
+    <Compile Include="DTOs\AnnouncementDTOs\RepairDto.cs" />
+    <Compile Include="DTOs\AnnouncementDTOs\SearchDto.cs" />
+    <Compile Include="DTOs\BaseDto.cs" />
+    <Compile Include="DTOs\AnnouncementDTOs\CityDto.cs" />
+    <Compile Include="DTOs\CommonDTOs\DepartamentCityDto.cs" />
+    <Compile Include="DTOs\CommonDTOs\RegionDepartamentDto.cs" />
+    <Compile Include="DTOs\CustomerDTOs\CustomerDto.cs" />
+    <Compile Include="DTOs\AnnouncementDTOs\PhoneNumberDto.cs" />
+    <Compile Include="DTOs\CustomerDTOs\CustomerPhoneNumberDto.cs" />
+    <Compile Include="DTOs\DepartamentDTOs\DepartamentDto.cs" />
+    <Compile Include="DTOs\OtherAnnouncementDTOs\GenericAnnouncementDto.cs" />
+    <Compile Include="DTOs\PricePlanDTOs\FrequencyDto.cs" />
+    <Compile Include="DTOs\PricePlanDTOs\PricePlanDto.cs" />
+    <Compile Include="DTOs\PricePlanDTOs\PricePlanHistoryDto.cs" />
+    <Compile Include="DTOs\RegionDTOs\RegionDto.cs" />
+    <Compile Include="DTOs\UserDTOs\RoleDto.cs" />
+    <Compile Include="DTOs\UserDTOs\RolePermissionDto.cs" />
+    <Compile Include="DTOs\UserDTOs\UserClaimDto.cs" />
+    <Compile Include="DTOs\UserDTOs\UserDto.cs" />
+    <Compile Include="DTOs\UserDTOs\UserLoginDto.cs" />
+    <Compile Include="DTOs\UserDTOs\UserRoleDto.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\Announcement\IAnnouncementAdditionRepository.cs" />
+    <Compile Include="Repositories\Announcement\IAnnouncementImageRepository.cs" />
+    <Compile Include="Repositories\Announcement\IAnnouncementRepository.cs" />
+    <Compile Include="Repositories\Announcement\IAnnouncementTypeRepository.cs" />
+    <Compile Include="Repositories\Common\IDepartamentCityRepository.cs" />
+    <Compile Include="Repositories\Common\IRegionDepartamentRepository.cs" />
+    <Compile Include="Repositories\Customer\ICustomerPhoneNumberRepository.cs" />
+    <Compile Include="Repositories\Departament\IDepartamentRepository.cs" />
+    <Compile Include="Repositories\IBaseIdentityRepository.cs" />
+    <Compile Include="Repositories\IBaseRepository.cs" />
+    <Compile Include="Repositories\Announcement\ICityRepository.cs" />
+    <Compile Include="Repositories\Customer\ICustomerRepository.cs" />
+    <Compile Include="Repositories\Announcement\IDocumentTypeRepository.cs" />
+    <Compile Include="Repositories\Announcement\IPhoneNumberRepository.cs" />
+    <Compile Include="Repositories\Announcement\IPropertyTypeRepository.cs" />
+    <Compile Include="Repositories\Announcement\IRepairRepository.cs" />
+    <Compile Include="Repositories\Other\IGenericAnnouncementRepository.cs" />
+    <Compile Include="Repositories\PricePlan\IFrequencyRepository.cs" />
+    <Compile Include="Repositories\PricePlan\IPricePlanHistoryRepository.cs" />
+    <Compile Include="Repositories\PricePlan\IPricePlanRepository.cs" />
+    <Compile Include="Repositories\Region\IRegionRepository.cs" />
+    <Compile Include="Repositories\User\IRolePermissionRepository.cs" />
+    <Compile Include="Repositories\User\IRoleRepository.cs" />
+    <Compile Include="Repositories\User\IUserRepository.cs" />
+    <Compile Include="Services\AnnouncementServices\AnnouncementAdditionService.cs" />
+    <Compile Include="Services\AnnouncementServices\AnnouncementImageService.cs" />
+    <Compile Include="Services\AnnouncementServices\AnnouncementService.cs" />
+    <Compile Include="Services\AnnouncementServices\AnnouncementTypeService.cs" />
+    <Compile Include="Services\AnnouncementServices\CityService.cs" />
+    <Compile Include="Services\CommonServices\DepartamentCityService.cs" />
+    <Compile Include="Services\CommonServices\RegionDepartamentService.cs" />
+    <Compile Include="Services\CustomerServices\CustomerPhoneNumberService.cs" />
+    <Compile Include="Services\CustomerServices\CustomerService.cs" />
+    <Compile Include="Services\AnnouncementServices\DocumentTypeService.cs" />
+    <Compile Include="Services\DepartamentServices\DepartamentService.cs" />
+    <Compile Include="Services\OtherAnnouncementServices\GenericAnnouncementService.cs" />
+    <Compile Include="Services\IBaseService.cs" />
+    <Compile Include="Services\AnnouncementServices\PhoneNumberService.cs" />
+    <Compile Include="Services\AnnouncementServices\PropertyTypeService.cs" />
+    <Compile Include="Services\AnnouncementServices\RepairService.cs" />
+    <Compile Include="Services\IBaseUserService.cs" />
+    <Compile Include="Services\PricePlanServices\FrequencyService.cs" />
+    <Compile Include="Services\PricePlanServices\PricePlanHistoryService.cs" />
+    <Compile Include="Services\PricePlanServices\PricePlanService.cs" />
+    <Compile Include="Services\RegionServices\RegionService.cs" />
+    <Compile Include="Services\UserServices\UserService.cs" />
+    <Compile Include="Validators\AnnouncementValidators\AnnouncementAdditionValidator.cs" />
+    <Compile Include="Validators\AnnouncementValidators\AnnouncementImageValidator.cs" />
+    <Compile Include="Validators\AnnouncementValidators\AnnouncementTypeValidator.cs" />
+    <Compile Include="Validators\AnnouncementValidators\AnnouncementValidator.cs" />
+    <Compile Include="Validators\AnnouncementValidators\CityValidator.cs" />
+    <Compile Include="Validators\CommonValidators\DepartamentCityValidator.cs" />
+    <Compile Include="Validators\CommonValidators\RegionDepartamentValidator.cs" />
+    <Compile Include="Validators\CustomerValidators\CustomerPhoneNumberValidator.cs" />
+    <Compile Include="Validators\CustomerValidators\CustomerValidator.cs" />
+    <Compile Include="Validators\AnnouncementValidators\DocumentTypeValidator.cs" />
+    <Compile Include="Validators\AnnouncementValidators\PhoneNumberValidator.cs" />
+    <Compile Include="Validators\AnnouncementValidators\PropertyTypeValidator.cs" />
+    <Compile Include="Validators\AnnouncementValidators\RepairValidator.cs" />
+    <Compile Include="Validators\DepartamentValidators\DepartamentValidator.cs" />
+    <Compile Include="Validators\OtherAnnouncementValidators\GenericAnnouncementValidator.cs" />
+    <Compile Include="Validators\PricePlanValidators\FrequencyValidator.cs" />
+    <Compile Include="Validators\PricePlanValidators\PricePlanHIstoryValidator.cs" />
+    <Compile Include="Validators\PricePlanValidators\PricePlanValidator.cs" />
+    <Compile Include="Validators\RegionValidators\RegionValidator.cs" />
+    <Compile Include="Validators\UserValidators\RolePermissionValidator.cs" />
+    <Compile Include="Validators\UserValidators\RoleValidator.cs" />
+    <Compile Include="Validators\UserValidators\UserValidator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PapaStreet.Common\PapaStreet.Common.csproj">
+      <Project>{dd98045e-28d5-49c3-8a5a-2498788cc663}</Project>
+      <Name>PapaStreet.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

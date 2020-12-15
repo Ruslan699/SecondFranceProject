@@ -1,0 +1,42 @@
+﻿@using PapaStreet.Common.Resources
+@(Html.DevExtreme().DataGrid<PapaStreet.BLL.DTOs.UserDto>()
+            .ID("usersGridContainer")
+            .DataSource(d => d.Mvc().Controller("User").LoadAction("Data").Key("Id"))
+            .RemoteOperations(false)
+            .AllowColumnReordering(true)
+            .RowAlternationEnabled(true)
+            .FilterRow(filterRow => filterRow.Visible(true).ApplyFilter(GridApplyFilterMode.Auto))
+            .ShowBorders(true)
+            .Paging(p => p.PageSize(10))
+            .Pager(p => p.ShowPageSizeSelector(true).AllowedPageSizes(new int[] { 10, 20, 50 }))
+            //.SearchPanel(s => s.Visible(true).HighlightCaseSensitive(true))
+            .Scrolling(scrolling => scrolling.Mode(GridScrollingMode.Standard))
+            //.Export(e => e.Enabled(true).FileName($"UsersGrid-{DateTime.Now.ToString()}"))
+            .ColumnMinWidth(120)
+            //.HeaderFilter(headerFilter => headerFilter.Visible(true))
+            .Columns(columns =>
+            {
+
+                columns.AddFor(m => m.Email)
+                    .Caption(UI.Email);
+
+                columns.AddFor(m => m.Id)
+                    .Caption(UI.Operations)
+                    .Width(150)
+                    .AllowFiltering(false)
+                    .AllowSorting(false)
+                    .CellTemplate(@<text>
+
+                        @*<button class="btn btn-sm btn-primary"
+                                onclick="HrefMe('@Url.Action("Form", "User")', '<%=value%>')">
+                            <i class="icon-pencil4"></i>
+                        </button>
+                        <button class="btn btn-sm btn-danger"
+                                onclick="ShowRemoveModal('@Url.Action("Remove", "User")', '<%=value%>')">
+                            <i class="icon-trash"></i>
+                        </button>*@
+
+                    </text>);
+
+                    })
+)

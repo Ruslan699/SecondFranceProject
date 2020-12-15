@@ -1,0 +1,97 @@
+﻿@model PapaStreet.WebUI.ViewModels.AnnouncementCommonViewModel
+@using PapaStreet.Common.Resources
+@using System.Globalization
+@{ 
+    foreach (var item in Model.Announcements)
+    {
+        string number = string.Format("{0, 2:F2}",item.Amount);
+        int index = number.IndexOf('.') + 1;
+        number = number.Substring(index, number.Length - index);
+    }
+    
+}
+<div class="row">
+    @foreach (var item in Model.Announcements)
+    {
+        <div class="col-lg-4 col-md-4">
+            <div class="card card-list">
+                <a href="@Url.Action("items","announcement",new { id = item.Id})">
+                    <div class="card-img">
+
+                        <div class="badge images-badge"><i class="mdi mdi-image-filter"></i> @item.AnnouncementImages.Count</div>
+                        <span class="badge badge-primary">@item.AnnouncementType.Name</span>
+                        <img class="card-img-top" style="height:168px" src="@item.AnnouncementImages.FirstOrDefault().Base64StringImage" alt="Card image cap">
+                    </div>
+                    <div class="card-body">
+                        <h2 class="text-primary mb-2 mt-0">
+                            @($"€ {String.Format("{0:# ### ###.##}", item.Amount)}") @*<small>/Month</small>*@
+                        </h2>
+                        <h5 class="card-title mb-2">@item.City.Name</h5>
+                        <h6 class="card-subtitle mt-1 mb-0 text-muted"><i class="mdi mdi-home-map-marker"></i> @item.Address</h6>
+                    </div>
+                    <div class="card-footer">
+                        <span><i class="mdi mdi-sofa"></i> @UI.RoomCount : <strong>@item.RoomCount</strong></span>
+                        <span><i class="mdi mdi-scale-bathroom"></i> @UI.Area : 
+                            <strong>
+                                @{
+                                    string area = item.Area.ToString("0");
+                                }
+                                @area
+                                m<sup>2</sup>
+                            </strong>
+                         </span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    }
+</div>
+<nav class="mt-5" id="pagination">
+    @if (Model.Pager.EndPage > 1)
+    {
+        <ul id="pagination-demo" class="pagination justify-content-center">
+            @if (Model.Pager.CurrentPage > 1)
+            {
+
+                <li class="page-item">
+                    <button class="page-link" onclick="pagination(1)" id="1"><span>1</span></button>
+                </li>
+
+                <li class="page-item">
+                    <button class="page-link" onclick="pagination(@(Model.Pager.CurrentPage - 1))" id="@(Model.Pager.CurrentPage - 1)" tabindex="-1"><i class="mdi mdi-chevron-left"></i></button>
+                </li>
+            }
+
+            @for (var page = Model.Pager.StartPage; page <= Model.Pager.EndPage; page++)
+            {
+                <li class="page-item @(page == Model.Pager.CurrentPage ? "active" : "")">
+                    @if (page == Model.Pager.CurrentPage)
+                    {
+                        <button class="page-link" id="@page">@page</button>
+                    }
+                    else
+                    {
+                        <button class="page-link" id="@page" onclick="pagination(@page)">@page</button>
+                    }
+                </li>
+            }
+
+            @if (Model.Pager.CurrentPage < Model.Pager.TotalPages)
+            {
+
+                <li class="page-item">
+                    <button class="page-link" onclick="pagination(@(Model.Pager.CurrentPage + 1))" id="@(Model.Pager.CurrentPage + 1)"><i class="mdi mdi-chevron-right"></i></button>
+                </li>
+                <li class="page-item">
+                    <button class="page-link" onclick="pagination(@(Model.Pager.TotalPages))" id="@(Model.Pager.TotalPages)">@Model.Pager.TotalPages</button>
+                </li>
+            }
+        </ul>
+    }
+</nav>
+
+<div class="spinner" style="display:none">
+    <div class="bounce1"></div>
+    <div class="bounce2"></div>
+    <div class="bounce3"></div>
+</div>

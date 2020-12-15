@@ -1,0 +1,116 @@
+﻿@using PapaStreet.Common.Resources
+@model PapaStreet.WebUI.Models.AnnouncementModel
+<div class="row">
+    <div class="col-lg-8 col-md-8 mx-auto">
+        <div class="card padding-card t-align-l no-radius border ">
+            <div class="card-body ">
+                <h5 class="card-title mb-4">@UI.PlacementAnnouncement</h5>
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label>@UI.ContactPerson <span class="text-danger">*</span></label>
+                        @Html.TextBoxFor(m => m.ContactPerson, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.ContactPerson)
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label>@UI.Email <span class="text-danger">*</span></label>
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Email)
+                    </div>
+                </div>
+                <div class="row">
+                    @Html.Partial("Partials/PhonePartials/_PhonePartial", Model.PhoneNumbers)
+                    @*<div class="form-group col-md-6">
+            <label>@UI.Regions <span class="text-danger">*</span></label>
+            @Html.DropDownList("Region", new SelectList(ViewBag.Regions, "Id", "Name"), "----", new { @class = "form-control custom-select" })
+            @Html.ValidationMessageFor(m => m.CityId)
+        </div>*@
+
+                    <div class="form-group col-md-6">
+                        <label>@UI.Departaments <span class="text-danger">*</span></label>
+                        @Html.DropDownList("Departament", new SelectList(ViewBag.Departaments, "Id", "Name"), "----", new { @class = "form-control custom-select" })
+                        @Html.ValidationMessageFor(m => m.CityId)
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>@UI.Cities <span class="text-danger">*</span></label>
+                        @Html.DropDownListFor(m => m.CityId, new SelectList(ViewBag.Cities, "Id", "Name"), "----", new { @class = "form-control custom-select" })
+                        @Html.ValidationMessageFor(m => m.CityId)
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label>@UI.VendorType <span class="text-danger">*</span></label>
+                        @Html.EnumDropDownListFor(m => m.VendorType, "----", new { @class = "form-control custom-select" })
+                        @Html.ValidationMessageFor(m => m.VendorType)
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label>@UI.AnnouncementType <span class="text-danger">*</span></label>
+                        @Html.DropDownListFor(m => m.AnnouncementTypeId, new SelectList(ViewBag.AnnouncementTypes, "Id", "Name"), "----", new { @class = "form-control custom-select" })
+                        @Html.ValidationMessageFor(m => m.AnnouncementTypeId)
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label>@UI.PropertyType <span class="text-danger">*</span></label>
+                        @Html.DropDownListFor(m => m.PropertyTypeId, new SelectList(ViewBag.PropertyTypes, "Id", "Name"), "----", new { @class = "form-control custom-select" })
+                        @Html.ValidationMessageFor(m => m.PropertyTypeId)
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-2">
+                        <label>@UI.RoomCount</label>
+                        @Html.TextBoxFor(m => m.RoomCount, new { @class = "form-control" })
+                    </div>
+
+                    <div class="form-group col-md-2">
+                        <label>@UI.CurrentFloor</label>
+                        @Html.TextBoxFor(m => m.CurrentFloor, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>@UI.FloorCount</label>
+                        @Html.TextBoxFor(m => m.FloorCount, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label>@UI.Area (m<sup>2</sup>) <span class="text-danger">*</span></label>
+                        @Html.TextBoxFor(m => m.Area, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Area)
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>@UI.Price (€)<span class="text-danger">*</span></label>
+                        @Html.TextBoxFor(m => m.Amount, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Amount)
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label>@UI.PropertyDescription  <span class="text-danger">*</span></label>
+                        @Html.TextAreaFor(m => m.PropertyDescription, new { @class = "form-control", @cols = 80, @rows = 10})
+                        @Html.ValidationMessageFor(m => m.PropertyDescription)
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label>@UI.Address  <span class="text-danger">*</span></label>
+                        @Html.TextBoxFor(m => m.Address, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Address)
+                    </div>
+                    <div class="form-group col-md-12">
+                        <h5 class="card-title mb-4">@UI.AnnouncementAdditionals</h5>
+                        <div class="row">
+                            @foreach (var item in ViewBag.AnnouncementAdditionals)
+                            {
+                                <div class="col-md-3">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" name="AnnouncementAdditionals[]" class="custom-control-input" id="@item.Id" value="@item.Id">
+                                        <label class="custom-control-label" for="@item.Id">@item.Name</label>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+
+                    @Html.Partial("Partials/AnnouncePartials/_AnnounceImagesPartial")
+                    <div class="form-group col-md-12">
+                        <button id="btnSubmit" type="submit" class="btn btn-primary btn-lg">
+                            @Html.Partial("_Loading") @UI.Confirm
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

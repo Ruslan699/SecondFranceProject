@@ -1,0 +1,28 @@
+﻿@model IEnumerable<PapaSreet.AdminUI.Models.PhoneNumberViewModel>
+@using PapaStreet.Common.Resources
+
+<div class="form-group col-md-6">
+    <label>@UI.Phone</label>
+    <div id="addBtn">
+        <i class="btn btn-icon rounded-round legitRipple icon-add" onclick="AddPhone()"></i>
+    </div>
+    </div>
+
+    <div id="phonesRow" class="col-lg-12 form-group">
+        @if (Model.Count() > 0)
+        {
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    <div class="col-lg-3">
+                        @Html.Partial("Partials/_PhoneFormPartial", item)
+                    </div>
+                }
+            </div>
+        }
+        else
+        {
+            Html.RenderPartial("Partials/_PhoneFormPartial", new PapaSreet.AdminUI.Models.PhoneNumberViewModel());
+        }
+    </div>
+

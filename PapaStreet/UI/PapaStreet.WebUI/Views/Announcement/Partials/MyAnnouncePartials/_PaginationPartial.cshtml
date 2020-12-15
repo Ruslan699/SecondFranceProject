@@ -1,0 +1,39 @@
+﻿@{
+    var pager = (PapaStreet.WebUI.ViewModels.Pager)ViewBag.Pager;
+}
+@using PapaStreet.WebUI.Security
+<nav class="mt-5">
+    @if (pager.EndPage > 1)
+    {
+        <ul class="pagination justify-content-center">
+            @if (pager.CurrentPage > 1)
+            {
+                <li class="page-item">
+                    <a class="page-link" href="@Url.Action("myannounce","announcement",new {id = Identity.Customer.Id, status = Request.QueryString["status"] })"><span>1</span></a>
+                </li>
+
+                <li class="page-item">
+                    <a class="page-link" href="@Url.Action("myannounce","announcement",new {id = Identity.Customer.Id, status = Request.QueryString["status"], page = (pager.CurrentPage - 1) })" tabindex="-1"><i class="mdi mdi-chevron-left"></i></a>
+                </li>
+            }
+
+            @for (var page = pager.StartPage; page <= pager.EndPage; page++)
+            {
+                <li class="page-item @(page == pager.CurrentPage ? "active" : "")">
+                    <a class="page-link" href="@Url.Action("myannounce","announcement",new {id = Identity.Customer.Id, status = Request.QueryString["status"], page = page })">@page</a>
+                </li>
+            }
+
+            @if (pager.CurrentPage < pager.TotalPages)
+            {
+
+                <li class="page-item">
+                    <a class="page-link" href="@Url.Action("myannounce","announcement",new {id = Identity.Customer.Id, status = Request.QueryString["status"], page = (pager.CurrentPage + 1) })"><i class="mdi mdi-chevron-right"></i></a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="@Url.Action("myannounce","announcement",new {id = Identity.Customer.Id, status = Request.QueryString["status"], page = pager.TotalPages })">@pager.TotalPages</a>
+                </li>
+            }
+        </ul>
+    }
+</nav>

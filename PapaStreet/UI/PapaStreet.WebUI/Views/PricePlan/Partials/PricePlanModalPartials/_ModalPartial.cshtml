@@ -1,0 +1,74 @@
+﻿@model IEnumerable<PapaStreet.BLL.DTOs.PricePlanDto>
+@using PapaStreet.Common.Resources
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">@UI.PricePlan</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+                <div class="modal-body">
+                    @foreach (var item in Model)
+                    {
+                        <p><strong>@item.Name</strong><br />@item.Description</p>
+                        <hr />
+                    }
+                    <div id="radioPricePlan">
+                        @ViewBag.Error
+                        @foreach (var item in Model)
+                        {
+                            <label>
+                                <input type="radio" class="option-input radio" name="goldenpay" value="@item.Id" />
+                                <span>
+                                    <strong id="radio-strong">@item.Name</strong>
+                                    @{
+                                        int price = (int)item.Price;
+                                    }
+                                    <span id="price-span"><b>@price €</b></span>
+                                </span>
+                            </label>
+                        }
+                    </div>
+                </div>
+            @Html.Hidden("goldenpayId")
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">@UI.Close</button>
+                    <button type="button" onclick="goldenPay()" id="btnGoldenPay" class="btn btn-primary">@UI.Continue</button>
+                </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $("#radioPricePlan input:radio[name=goldenpay]:first").attr('checked', true);
+        $("#goldenpayId").val($("#radioPricePlan input:radio[name=goldenpay]:first").val());
+    })
+   
+    $("#radioPricePlan input:radio[name=goldenpay]").change(function () {
+        $("#goldenpayId").val($(this).val());
+    });
+    function goldenPay() {
+        var id = $("#goldenpayId").val();
+        $.ajax({
+            type: 'POST',
+            dataType: "json",
+            url: '@Url.Action("RegisterContinue", "Customer")',
+            data: { PricePlanId: id },
+            success: function (response) {
+                if (response.IsSucceed) {
+                    location.href = response.Description;
+                }
+                else {
+                    alertify.error(response.Description);
+                }
+            },
+            error: function (response) {
+                alertify.error(response.Description);
+            }
+        });
+    }
+</script>
+
+

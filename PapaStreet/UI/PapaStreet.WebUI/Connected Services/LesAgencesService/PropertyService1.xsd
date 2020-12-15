@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/LesagencesPropertyService" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/LesagencesPropertyService" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:56624/PropertyService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="ArrayOfPropertyModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PropertyModel" nillable="true" type="tns:PropertyModel" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPropertyModel" nillable="true" type="tns:ArrayOfPropertyModel" />
+  <xs:complexType name="PropertyModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Address" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ImageId" nillable="true" type="ser:guid" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RoomsCount" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="SalePrice" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="TotalSquare" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Uid" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PropertyModel" nillable="true" type="tns:PropertyModel" />
+  <xs:complexType name="PropertyDocumentModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Image" nillable="true" type="xs:base64Binary" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PropertyDocumentModel" nillable="true" type="tns:PropertyDocumentModel" />
+</xs:schema>

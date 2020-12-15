@@ -1,0 +1,270 @@
+﻿@using PapaStreet.Common.Resources
+@model PapaStreet.WebUI.ViewModels.AnnouncementCommonViewModel
+<style type="text/css">
+</style>
+<section class="samar-slider">
+    <div id="samarslider" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#samarslider" data-slide-to="0" class="active"></li>
+            <li data-target="#samarslider" data-slide-to="1"></li>
+        </ol>
+        <div class="carousel-inner" role="listbox">
+            <div class="carousel-item active slider-one">
+                <div class="overlay"></div>
+            </div>
+            <div class="carousel-item slider-two">
+                <div class="overlay"></div>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#samarslider" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#samarslider" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+    @Html.Partial("Partials/SearchPartials/_SearchPartial", Model)
+</section>
+
+
+<section class="section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-3">
+                @Html.Partial("Partials/AnnouncementPartials/_SidebarAnnouncementPartial", Model)
+            </div>
+            <div class="col-lg-9 col-md-9">
+                @Html.Partial("Partials/SortingPartials/_SortingPartial")
+                <div id="announcementsDiv">
+                    @Html.Partial("Partials/AnnouncementPartials/_AnnouncementPartial", Model)
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section scripts {
+    <script src="~/Scripts/js/owl.carousel.js"></script>
+    <script>
+        //Filter
+        var _page = 1;
+        var _sorting = 1;
+        var _announcementtype = '@Request.QueryString["announcementtype"]';
+        var _propertytype = '@Request.QueryString["PropertyTypes"]';
+        var _repair = '@Request.QueryString["repair"]';
+        var _Regions = '@Request.QueryString["Regions"]';
+        var _Departaments = '@Request.QueryString["Departaments"]';
+        var _Cities = [];
+        var _CityName = [];
+        if ('@Request.QueryString["Cities"]' != "") {
+            var Cities = '@Request.QueryString["Cities"]';
+            _Cities = Cities.split(",");
+        }
+        if ('@Request.QueryString["CityName"]' != "") {
+            CityNames = '@Request.QueryString["CityName"]';
+            _CityName = CityNames.split(",");
+        }
+        var _minroomcount = '@Request.QueryString["minroomcount"]';
+        var _maxroomcount = '@Request.QueryString["maxroomcount"]';
+        var _minprice = '@Request.QueryString["minprice"]';
+        var _maxprice = '@Request.QueryString["maxprice"]';
+        var _minarea = '@Request.QueryString["minarea"]';
+        var _maxarea = '@Request.QueryString["maxarea"]';
+        var _additionstr = "";
+
+$(function () {
+    $("#sorting .sorting").click(function () {
+        var sorting = $(this).attr("id");
+        _sorting = sorting;
+        $.ajax({
+            type: 'POST',
+            dataType: "html",
+            url: '@Url.Action("Search", "Announcement")',
+            data: {
+                sortBy: _sorting,
+                announcementtype: _announcementtype,
+                PropertyTypes: _propertytype,
+                repair: _repair,
+                Regions: _Regions,
+                Departaments: _Departaments,
+                Cities: _Cities,
+                CityName: _CityName,
+                AnnouncementAdditionId: _additionstr,
+                minroomcount: _minroomcount,
+                maxroomcount: _maxroomcount,
+                minprice: _minprice,
+                maxprice: _maxprice,
+                minarea: _minarea,
+                maxarea: _maxarea,
+            },
+            success: function (response) {
+                $("#announcementsDiv").html(response)
+            },
+            error: function () {
+                alert('Error!');
+            }
+        });
+    });
+});
+function search(page) {
+    _page = page;
+    $("#announcementsDiv .spinner").css({"display":"block"})
+    $.ajax({
+        type: 'POST',
+        dataType: "html",
+        url: '@Url.Action("Search", "Announcement")',
+        data: {
+            sortBy: _sorting,
+            page: _page,
+            announcementtype: _announcementtype,
+            PropertyTypes: _propertytype,
+            repair: _repair,
+            Regions: _Regions,
+            Departaments: _Departaments,
+            Cities: _Cities,
+            CityName: _CityName,
+            AnnouncementAdditionId: _additionstr,
+            minroomcount: _minroomcount,
+            maxroomcount: _maxroomcount,
+            minprice: _minprice,
+            maxprice: _maxprice,
+            minarea: _minarea,
+            maxarea: _maxarea,
+        },
+        success: function (response) {
+            $("#announcementsDiv").html(response)
+            $("#announcementsDiv .spinner").css({ "display": "none" })
+        },
+        error: function () {
+            alert('Error!');
+        }
+    });
+}
+
+function regions(regionId) {
+        $.ajax({
+            type: 'POST',
+            dataType: "json",
+            url: '@Url.Action("Departaments", "Announcement")',
+            data: { regionId: regionId },
+            success: function (response) {
+                $('#DepartamentsId').empty();
+                $('#DepartamentsId').append(new Option('@UI.Departaments',""))
+                for (var i = 0; i < response.Departaments.length; i++) {
+                    $('#DepartamentsId').append(new Option(response.Departaments[i].Text, response.Departaments[i].Value))
+                }
+                $('#CitiesId').empty();
+                $('#CitiesId').append(new Option('@UI.Cities', ""))
+                for (var i = 0; i < response.Cities.length; i++) {
+                    $('#CitiesId').append(new Option(response.Cities[i].Text, response.Cities[i].Value))
+                }
+            },
+            error: function () {
+                alert('Error!');
+            }
+        });
+}
+
+function departaments(dpId) {
+        $.ajax({
+            type: 'POST',
+            dataType: "json",
+            url: '@Url.Action("Cities", "Announcement")',
+            data: { departamentId: dpId },
+            success: function (response) {
+                $('#CitiesId').empty();
+                $.each(response, function (i, item) {
+                    $('#CitiesId').append(new Option(response[i].Text, response[i].Value))
+                });
+            },
+            error: function () {
+                alert('Error!');
+            }
+         });
+}
+
+$(document).ready(function () {
+    $('input[type="checkbox"]').click(function () {
+        var addition = [];
+        var additionstr="";
+        $('input[type="checkbox"]').each(function (index) {
+            if ($(this).is(":checked")) {
+                addition.push($(this).attr("id"));
+            }
+        })
+        _additionstr = addition.join(',');
+        $.ajax({
+                type: 'POST',
+                dataType: "html",
+                url: '@Url.Action("Search", "Announcement")',
+                data: {
+                    sortBy: _sorting,
+                    announcementtype: _announcementtype,
+                    PropertyTypes: _propertytype,
+                    repair: _repair,
+                    Regions: _Regions,
+                    Departaments: _Departaments,
+                    Cities: _Cities,
+                    CityName: _CityName,
+                    AnnouncementAdditionId: _additionstr,
+                    minroomcount: _minroomcount,
+                    maxroomcount: _maxroomcount,
+                    minprice: _minprice,
+                    maxprice: _maxprice,
+                    minarea: _minarea,
+                    maxarea: _maxarea,
+                },
+                success: function (response) {
+                    $("#announcementsDiv").html(response);
+                },
+                error: function () {
+                    alert('Error!');
+                }
+            });
+    });
+
+});
+
+$(function () {
+    $("button:button[name=btnsearch]").click(function () {
+        _minarea = $("input:text[name=minarea-filter]").val();
+        _maxarea = $("input:text[name=maxarea-filter]").val();
+        _minroomcount = $("input:text[name=minroomcount-filter]").val();
+        _maxroomcount = $("input:text[name=maxroomcount-filter]").val();
+        _minprice = $("input:text[name=minprice-filter]").val();
+        _maxprice = $("input:text[name=maxprice-filter]").val();
+        $.ajax({
+            type: 'POST',
+            dataType: "html",
+            url: '@Url.Action("Search", "Announcement")',
+            data: {
+                sortBy: _sorting,
+                announcementtype: _announcementtype,
+                PropertyTypes: _propertytype,
+                repair: _repair,
+                Regions: _Regions,
+                Departaments: _Departaments,
+                Cities: _Cities,
+                CityName: _CityName,
+                AnnouncementAdditionId: _additionstr,
+                minroomcount: _minroomcount,
+                maxroomcount: _maxroomcount,
+                minprice: _minprice,
+                maxprice: _maxprice,
+                minarea: _minarea,
+                maxarea: _maxarea,
+            },
+            success: function (response) {
+                $("#announcementsDiv").html(response);
+            },
+            error: function () {
+                alert('Error!');
+            }
+        });
+    });
+});
+    </script>
+}

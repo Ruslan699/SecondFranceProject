@@ -1,0 +1,33 @@
+﻿<section class="section-padding">
+    <div class="section-title text-center mb-5">
+        <h2>Les Agences De Papa</h2>
+        <div class="line mb-2"></div>
+        <p>Agence immobilière Chez Papa la commission c’est 2000 balles Confiez-nous votre bien</p>
+    </div>
+    <div class="container owl-carousel">
+        @foreach (var item in ViewBag.LesAgencesProperties)
+        {
+            <div class="card card-list">
+                <a target="_blank" href="http://lesagencesdepapa.fr/Property/GetDetails?uid=@item.Uid">
+                    <div class="card-img">
+                        <div class="badge images-badge"><i class="mdi mdi-image-filter"></i> 1</div>
+                        <span class="badge badge-primary">lesagencesdepapa</span>
+                        <img class="card-img-top" src="@Url.Action("GetPropertyImage", "Home", new { id = item.ImageId })" alt="Card image cap">
+                    </div>
+                    <div class="card-body">
+                        <h2 class="text-primary mb-2 mt-0">
+                            @($"€ {String.Format("{0:# ### ###.##}", item.SalePrice)}")  @*<small>/Per Month</small>*@
+                        </h2>
+                        @*<h5 class="card-title mb-2">Alsace</h5>*@
+                        <h6 class="card-subtitle mt-1 mb-0 text-muted"><i class="mdi mdi-home-map-marker"></i> @item.Name</h6>
+                    </div>
+                    <div class="card-footer">
+                        <span><i class="mdi mdi-sofa"></i> Nombre d'etages: <strong>@item.RoomsCount</strong></span>
+                        @*<span><i class="mdi mdi-scale-bathroom"></i> Baths : <strong>2</strong></span>*@
+                        <span><i class="mdi mdi-move-resize-variant"></i> Superficie totale  : <strong>@item.TotalSquare m<sup>2</sup></strong></span>
+                    </div>
+                </a>
+            </div>
+        }
+    </div>
+</section>

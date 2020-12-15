@@ -1,0 +1,56 @@
+﻿<div class="card card-sidebar-mobile">
+    <ul class="nav nav-sidebar" data-nav-type="accordion">
+        <li class="nav-item-header"><div class="text-uppercase font-size-xs line-height-xs">Main</div> <i class="icon-menu" title="Main"></i></li>
+        <li class="nav-item">
+            <a href="@Url.Action("Index","Admin")" class="nav-link active">
+                <i class="icon-home4"></i>
+                <span>
+                    Dashboard
+                </span>
+            </a>
+        </li>
+        <li class="nav-item nav-item-submenu">
+            <a href="#" class="nav-link"><i class="icon-table"></i> <span>Announcements</span></a>
+            <ul class="nav nav-group-sub">
+                <li class="nav-item"><a href=@Url.Action("Index", "Announcement") class="nav-link">Announcements</a></li>
+                <li class="nav-item"><a href=@Url.Action("Index","AnnouncementType") class="nav-link">Announcement Types</a></li>
+                <li class="nav-item"><a href=@Url.Action("Index","PropertyType") class="nav-link">Property Types</a></li>
+                <li class="nav-item"><a href=@Url.Action("Index","AnnouncementAddition") class="nav-link">Announcement Additions</a></li>
+                <li class="nav-item"><a href=@Url.Action("Index", "Department") class="nav-link">Departments</a></li>
+                <li class="nav-item"><a href=@Url.Action("Index", "DepartmentCity") class="nav-link">Departments and Cities</a></li>
+                <li class="nav-item"><a href=@Url.Action("Index", "City") class="nav-link">Cities</a></li>
+                @*<li class="nav-item"><a href=@Url.Action("Index","DocumentType") class="nav-link">Document Types</a></li>
+                <li class="nav-item"><a href=@Url.Action("Index","Repair") class="nav-link">Repairs</a></li>*@
+                @*<li class="nav-item"><a href=@Url.Action("Index", "Region") class="nav-link">Regions</a></li>*@
+                @*<li class="nav-item"><a href=@Url.Action("Index", "RegionDepartment") class="nav-link">Regions and Departments</a></li>*@
+            </ul>
+        </li>
+
+        <li class="nav-item nav-item-submenu">
+            <a href="#" class="nav-link"><i class="icon-users"></i> <span>Customers</span></a>
+            <ul class="nav nav-group-sub">
+                <li class="nav-item"><a href=@Url.Action("Index", "Customer") class="nav-link">Customers</a></li>
+            </ul>
+        </li>
+
+        <li class="nav-item nav-item-submenu">
+            <a href="#" class="nav-link"><i class="icon-table"></i> <span>Other Announcements</span></a>
+            <ul class="nav nav-group-sub">
+                <li class="nav-item"><a href=@Url.Action("Index", "GenericAnnouncement") class="nav-link">Announcements From Other Sites</a></li>
+            </ul>
+        </li>
+
+        <li class="nav-item nav-item-submenu">
+            <a href="#" class="nav-link"><i class="icon-price-tag"></i> <span>Price Plans</span></a>
+            <ul class="nav nav-group-sub">
+                <li class="nav-item"><a href=@Url.Action("Index", "PricePlan") class="nav-link">Price Plans</a></li>
+            </ul>
+            <ul class="nav nav-group-sub">
+                <li class="nav-item"><a href=@Url.Action("Index", "Frequency") class="nav-link">Frequencies</a></li>
+            </ul>
+            <ul class="nav nav-group-sub">
+                <li class="nav-item"><a href=@Url.Action("Index", "PricePlanHistory") class="nav-link">Price Plan Histories</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>

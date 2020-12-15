@@ -1,0 +1,23 @@
+﻿@model IEnumerable<PapaStreet.WebUI.Models.PhoneNumberModel>
+@using PapaStreet.Common.Resources
+
+<div class="form-group col-md-1">
+    <label>@UI.Phone <span class="text-danger">*</span></label>
+    <div class="input-group-append" id="addBtn">
+        <button type="button" class="input-group-text"  onclick="AddPhone()">+</button>
+    </div>
+</div>
+<div id="phonesRow" class="col-md-12 form-group">
+    @if (Model.Count() > 0)
+    {
+        foreach (var item in Model)
+        {
+            Html.RenderPartial("Partials/PhonePartials/_PhoneFormPartial", item);
+        }
+    }
+    else
+    {
+        Html.RenderPartial("Partials/PhonePartials/_PhoneFormPartial", new PapaStreet.WebUI.Models.PhoneNumberModel());
+    }
+</div>
+

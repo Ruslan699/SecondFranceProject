@@ -1,0 +1,78 @@
+﻿.Active {
+    background-color:green; 
+    color: white;
+    padding:3px 5px;
+}
+
+.Pending {
+    background-color: yellow;
+    color: black;
+    padding: 3px 5px;
+}
+
+.Deactive {
+    background-color: #421803;
+    color: white;
+    padding: 3px 5px;
+}
+
+.Deleted {
+    background-color: #a50000;
+    color: white;
+    padding: 3px 5px;
+}
+
+.Rejected {
+    background-color: #85aff2;
+    color: white;
+    padding: 3px 5px;
+}
+
+.Blocked {
+    background-color: #ff3030;
+    color: white;
+    padding: 3px 5px;
+}
+
+.mt-1 {
+    right: 20%;
+    position: absolute;
+    z-index: 99999;
+}
+
+.default {
+    color: red;
+}
+
+.circle {
+    color: red;
+}
+
+.upload-btn-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+}
+
+.btnImage {
+    border: 1px solid #ccc;
+    background-color: #dddddd;
+    padding: 6px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer
+}
+
+    .btnImage:hover {
+        background-color: #d7d7d7;
+    }
+
+.upload-btn-wrapper input[type=file] {
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    cursor: pointer
+}

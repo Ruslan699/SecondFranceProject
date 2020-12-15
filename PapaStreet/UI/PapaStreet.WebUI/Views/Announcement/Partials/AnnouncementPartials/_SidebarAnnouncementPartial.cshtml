@@ -1,0 +1,105 @@
+﻿@model PapaStreet.WebUI.ViewModels.AnnouncementCommonViewModel
+@using PapaStreet.Common.Resources
+<div class="card inner-side-bar">
+    <div class="card-body property-features-add">
+        <h5 class="card-title mb-3">@UI.AnnouncementAdditionals</h5>
+        @foreach (var item in Model.AnnouncementAdditionals)
+        {
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="@item.Id" value="@item.Name">
+                <label class="custom-control-label" for="@item.Id">@item.Name</label>
+            </div>
+        }
+        <br />
+        <h5 class="card-title mb-3">@UI.Area</h5>
+        <div class="input-group">
+            <div class="row">
+                <div class="col-lg-5 col-md-5 col-sm-5 col-5" style="padding-right: 0px">
+                    <div class="input-group-addon"><i class="mdi mdi-magnify-minus-outline"></i></div>
+                    <input class="form-control" type="text" style="font-size: 10px" name="minarea-filter" value="@Request.QueryString["minarea"]" placeholder=" @UI.Area Min " />
+                </div>
+                <div class="col-lg-5 col-md-5 col-sm-6 col-5" style="padding-right: 0px">
+                    <div class="input-group-addon"><i class="mdi mdi-magnify-plus-outline"></i></div>
+                    <input class="form-control" type="text" style="font-size: 10px" name="maxarea-filter" value="@Request.QueryString["maxarea"]" placeholder="@UI.Area Max" />
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-2" style="padding-right: 0px">
+                    <div class="input-group-addon">-----</div>
+                    <button type="button" class="btnfiltersearch" name="btnsearch"><i class="mdi mdi-account-search"></i></button>
+                </div>
+            </div>
+        </div>
+        <br />
+        <h5 class="card-title mb-3">@UI.RoomCount</h5>
+        <div class="input-group">
+            <div class="row">
+                <div class="col-lg-5 col-md-5 col-sm-5 col-5" style="padding-right: 0px">
+                    <div class="input-group-addon"><i class="mdi mdi-magnify-minus-outline"></i></div>
+                    <input class="form-control" type="text" style="font-size: 10px" name="minroomcount-filter" value="@Request.QueryString["minroomcount"]" placeholder="@UI.RoomCount Min" />
+                </div>
+                <div class="col-lg-5 col-md-5 col-sm-6 col-5" style="padding-right: 0px">
+                    <div class="input-group-addon"><i class="mdi mdi-magnify-plus-outline"></i></div>
+                    <input class="form-control" type="text" style="font-size: 10px" name="maxroomcount-filter" value="@Request.QueryString["maxroomcount"]" placeholder="@UI.RoomCount Max" />
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-2" style="padding-right: 0px">
+                    <div class="input-group-addon">-----</div>
+                    <button type="button" class="btnfiltersearch"  name="btnsearch"><i class="mdi mdi-account-search"></i></button>
+                </div>
+            </div>
+        </div>
+        <br />
+        <h5 class="card-title mb-3">@UI.Price</h5>
+        <div class="input-group">
+            <div class="row">
+                <div class="col-lg-5 col-md-5 col-sm-5 col-5" style="padding-right: 0px">
+                    <div class="input-group-addon"><i class="mdi mdi-magnify-minus-outline"></i></div>
+                    <input class="form-control" type="text" style="font-size: 10px" name="minprice-filter" value="@Request.QueryString["minprice"]" placeholder=" @UI.Price Min" />
+                </div>
+                <div class="col-lg-5 col-md-5 col-sm-6 col-5" style="padding-right: 0px">
+                    <div class="input-group-addon"><i class="mdi mdi-magnify-plus-outline"></i></div>
+                    <input class="form-control" type="text" style="font-size: 10px" name="maxprice-filter" value="@Request.QueryString["maxprice"]" placeholder=" @UI.Price Max " />
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-2" style="padding-right: 0px">
+                    <div class="input-group-addon">-----</div>
+                    <button type="button" class="btnfiltersearch" name="btnsearch"><i class="mdi mdi-account-search"></i></button>
+                </div>
+            </div>  
+        </div>
+    </div>
+</div>
+
+@*<div class="card inner-side-bar">
+    <div class="card-body">
+        <h5 class="card-title mb-3">@UI.AnnouncementType</h5>
+        <ul class="sidebar-card-list">
+            @foreach (var item in Model.AnnouncementTypes)
+            {
+                <li><a href="@Url.Action("Index","Announcement",new { @announcementtype=item.Id})">
+                    <i class="mdi mdi-chevron-right"></i> @item.Name
+                    <span class="sidebar-badge">@Model.AllAnnouncements.Where(x => x.AnnouncementTypeId == item.Id).Count()
+                        </span>
+                    </a>
+                </li>
+
+            }
+        </ul>
+    </div>
+</div>*@
+@*<div class="card inner-side-bar">
+    <div class="card-body">
+        <h5 class="card-title mb-3">@UI.Cities</h5>
+        <ul class="sidebar-card-list">
+            @foreach (var item in Model.TopCities)
+            {
+                <li>
+                    <a href="@Url.Action("Index","Announcement",new { @CityName=item.Item1})">
+                        <i class="mdi mdi-chevron-right"></i>
+                        @item.Item1
+                        <span class="sidebar-badge">
+                            @item.Item2
+                        </span>
+                    </a>
+                </li>
+            }
+        </ul>
+    </div>
+</div>*@

@@ -1,0 +1,193 @@
+﻿@model PapaStreet.WebUI.ViewModels.AnnouncementCommonViewModel
+@using PapaStreet.Common.Resources
+@section Styles
+{
+    <link href="~/Content/css/owl.carousel.css" rel="stylesheet" />
+    <link href="~/Content/css/owl.theme.default.css" rel="stylesheet" />
+}
+<section class="samar-slider">
+    <div id="samarslider" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#samarslider" data-slide-to="0" class="active"></li>
+            <li data-target="#samarslider" data-slide-to="1"></li>
+        </ol>
+        <div class="carousel-inner" role="listbox">
+            <div class="carousel-item active slider-one">
+                <div class="overlay"></div>
+            </div>
+            <div class="carousel-item slider-two">
+                <div class="overlay"></div>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#samarslider" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#samarslider" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+    @Html.Partial("Partials/SearchPartials/_SearchPartial", Model)
+</section>
+
+@Html.Partial("Partials/LesAgencesDePapaPartials/_LesAgencesDePapaPartial")
+    <section class="section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-3">
+                    @Html.Partial("Partials/AnnouncementViewPartials/_SidebarAnnouncementPartial", Model)
+                </div>
+                <div class="col-lg-9 col-md-9">
+                    @Html.Partial("Partials/SortingPartials/_SortingPartial")
+                    <div id="announcementsDiv">
+                        @Html.Partial("Partials/AnnouncementViewPartials/_AnnouncementPartial", Model)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+@Html.Partial("Partials/OtherAnnouncementsPartials/_OtherAnnouncementPartial", Model.GenericAnnouncements)
+
+@section scripts {
+    <script src="~/Scripts/js/owl.carousel.js"></script>
+    <script>
+        //Filter
+
+        var _page = 1;
+        var _sorting = 1;
+$(function () {
+    $("#sorting .sorting").click(function () {
+        var sorting = $(this).attr("id");
+        _sorting = sorting;
+        $.ajax({
+            type: 'POST',
+            dataType: "html",
+            url: '@Url.Action("PagerSortBy", "Home")',
+            data: { sortBy: _sorting, page: _page },
+            success: function (response) {
+                $("#announcementsDiv").html(response)
+            },
+            error: function () {
+                alert('Error!');
+            }
+        });
+    });
+});
+        
+function regions(regionId) {
+        $.ajax({
+            type: 'POST',
+            dataType: "json",
+            url: '@Url.Action("Departaments", "Home")',
+            data: { regionId: regionId },
+            success: function (response) {
+                $('#DepartamentsId').empty();
+                $('#DepartamentsId').append(new Option('@UI.Departaments',""))
+                for (var i = 0; i < response.Departaments.length; i++) {
+                    $('#DepartamentsId').append(new Option(response.Departaments[i].Text, response.Departaments[i].Value))
+                }
+                $('#CitiesId').empty();
+                $('#CitiesId').append(new Option('@UI.Cities', ""))
+                for (var i = 0; i < response.Cities.length; i++) {
+                    $('#CitiesId').append(new Option(response.Cities[i].Text, response.Cities[i].Value))
+                }
+            },
+            error: function () {
+                alert('Error!');
+            }
+        });
+}
+
+
+function departaments(dpId) {
+        $.ajax({
+            type: 'POST',
+            dataType: "json",
+            url: '@Url.Action("Cities", "Home")',
+            data: { departamentId: dpId },
+            success: function (response) {
+                $('#CitiesId').empty();
+                $.each(response, function (i, item) {
+                    $('#CitiesId').append(new Option(response[i].Text, response[i].Value));
+                });
+            },
+            error: function () {
+                alert('Error!');
+            }
+         });
+}
+
+function pagination(page) {
+        _page = page;
+        $("#announcementsDiv .spinner").css({"display":"block"})
+        $.ajax({
+            type: 'POST',
+            dataType: "html",
+            url: '@Url.Action("PagerSortBy", "Home")',
+            data: { sortBy: _sorting, page: _page },
+            success: function (response) {
+                $("#announcementsDiv").html(response)
+                $("#announcementsDiv .spinner").css({ "display": "none" })
+            },
+            error: function () {
+                alert('Error!');
+            }
+    });
+ }
+
+$(document).ready(function () {
+    $('input[type="checkbox"]').click(function () {
+        if ($(this).is(":checked")) {
+            var id = $(this).attr("id");
+            $.ajax({
+                type: 'POST',
+                dataType: "html",
+                url: '@Url.Action("Search", "Home")',
+                data: { id: id, page: _page },
+                success: function (response) {
+                    $("#announcementsDiv").html(response)
+                },
+                error: function () {
+                    alert('Error!');
+                }
+            });
+        }
+        else if ($(this).is(":not(:checked)")) {
+            var id = null;
+            $.ajax({
+                type: 'POST',
+                dataType: "html",
+                url: '@Url.Action("Search", "Home")',
+                data: { id: id, page: _page },
+                success: function (response) {
+                    $("#announcementsDiv").html(response)
+                },
+                error: function () {
+                    alert('Error!');
+                }
+            });
+        }
+    });
+});
+
+//Slider
+$('.owl-carousel').owlCarousel({
+    loop: true,
+    margin: 10,
+    nav: false,
+    autoplay: true,
+    responsive: {
+        0: {
+            items: 1
+        },
+        600: {
+            items: 3
+        },
+        1000: {
+            items: 4
+        }
+    }
+});
+</script>
+}

@@ -1,0 +1,48 @@
+﻿@using PapaStreet.Common.Resources
+@using PapaStreet.WebUI.Models
+@model CustomerModel
+<div class="col-lg-6 col-md-6 mx-auto">
+    <div class="card padding-card no-radius border t-align-l">
+        <div class="card-body">
+            <h5 class="card-title mb-4">@UI.SignUp</h5>
+            @using (Ajax.BeginForm("register", FormMethod.Post,
+                new AjaxOptions { OnSuccess = "OnSuccessRegister", OnBegin = "OnLoading", OnFailure = "OnFailure" }))
+            {
+                <div class="form-group">
+                    <label>@UI.FirstName <span class="text-danger">*</span></label>
+                    @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", placeholder = UI.FirstName })
+                    @Html.ValidationMessageFor(m => m.FirstName)
+                </div>
+                <div class="form-group">
+                    <label>@UI.LastName <span class="text-danger">*</span></label>
+                    @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", placeholder = UI.LastName })
+                    @Html.ValidationMessageFor(m => m.LastName)
+                </div>
+                <div class="form-group">
+                    <label>@UI.Email <span class="text-danger">*</span></label>
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = UI.Email })
+                    @Html.ValidationMessageFor(m => m.Email)
+                </div>
+                <div class="form-group">
+                    <label>@UI.Password <span class="text-danger">*</span></label>
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = UI.Password })
+                    @Html.ValidationMessageFor(m => m.Password)
+                </div>
+                <div class="form-group">
+                    <label>@UI.ConfirmPassword <span class="text-danger">*</span></label>
+                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", placeholder = UI.ConfirmPassword })
+                    @Html.ValidationMessageFor(m => m.ConfirmPassword)
+                </div>
+                @*<div class="form-group">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customControlAutosizing">
+                            <label class="custom-control-label" for="customControlAutosizing">@UI.IagreeWithAllTermsAndConditions</label>
+                        </div>
+                    </div>*@
+                <button id="btnSubmit" class="btn btn-primary btn-lg btn-block">
+                    @Html.Partial("_Loading") @UI.SignUp
+                </button>
+            }
+        </div>
+    </div>
+</div>

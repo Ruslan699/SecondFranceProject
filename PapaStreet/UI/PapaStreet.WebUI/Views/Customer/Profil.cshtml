@@ -1,0 +1,243 @@
+﻿@using PapaStreet.Common.Constants
+@using PapaStreet.WebUI.Models
+@using PapaStreet.Common.Resources
+@model CustomerModel
+<section class="section-padding bg-dark inner-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h1 class="mt-0 mb-3">@UI.UserProfile</h1>
+                <div class="breadcrumbs">
+                    <p class="mb-0"><a href="@Url.Action("Index","Home")"><i class="mdi mdi-home-outline"></i> @UI.Home</a> /  @UI.UserProfile</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- User Profile -->
+<section class="section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-4 user-side-bar">
+                <div class="list-group mb-4">
+                    <a class="list-group-item list-group-item-action active" href="@Url.Action("profil","customer",   new {id = Model.Id })"><span class="mdi mdi-account"></span> @UI.UserProfile</a>
+                    <a class="list-group-item list-group-item-action" href="@Url.Action("myannounce", "announcement", new {id = Model.Id, status = (int)Enums.Status.Active })"><span class="mdi mdi-home-account"></span> @UI.ActiveMyAnnouncement</a>
+                    <a class="list-group-item list-group-item-action" href="@Url.Action("myannounce","announcement",  new {id = Model.Id, status = (int)Enums.Status.Deactive })"><span class="mdi mdi-home-account"></span> @UI.DeactiveMyAnnouncement</a>
+                    <a class="list-group-item list-group-item-action" href="@Url.Action("myannounce","announcement",  new {id = Model.Id, status = (int)Enums.Status.Deleted })"><span class="mdi mdi-home-account"></span> @UI.DeleteMyAnnouncement</a>
+                    <a class="list-group-item list-group-item-action" href="@Url.Action("myannounce","announcement",  new {id = Model.Id, status = (int)Enums.Status.Pending})"><span class="mdi mdi-home-account"></span> @UI.WaitingMyAnnouncement </a>
+
+                </div>
+                <div class="card padding-card mb-4">
+                    <div class="card-body agents-card text-left">
+                        <h6 class="mb-0 text-primary">
+                            - @Model.FirstName @Model.LastName
+                        </h6>
+                        <small><i class="mdi mdi-email"></i>@Model.Email</small>
+                        <br />
+                        @foreach (var item in Model.CustomerNumbers)
+                        {
+                            <small><i class="mdi mdi-phone"></i>@item.Number</small><br />
+                        }
+                        <p class="mb-4">@Model.About</p>
+                    </div>
+                </div>
+
+                @Html.Partial("Partials/_ChangePasswordPartial")
+            </div>
+            <div class="col-lg-8 col-md-9">
+                @if (Model.PricePlanStatus)
+                {
+                    <div class="card padding-card mb-4">
+                        <div class="card-body agents-card text-left">
+                            <div class="row" style="border:1px solid #ddd;font-size:15px;background-color:#ddd">
+                                <div class="col-sm-10 col-md-10 col-lg-10" style="line-height:33px">
+                                    0 elan yerləşdirmək imkanınız qalıb
+                                </div>
+                                <div class="col-sm-2 col-md-2 col-lg-2">
+                                    <button style="border-radius:0px" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#multiCollapseExample1" aria-expanded="false" aria-controls="multiCollapseExample1">
+                                        Odenis et
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="row" id="goldenpay">
+                                <div class="col">
+                                    <div class="collapse multi-collapse" id="multiCollapseExample1">
+                                        <div class="card card-body golden-body" style="border-radius:0px;">
+                                            <div id="radioPricePlan">
+                                                @foreach (var item in ViewBag.PricePlans)
+                                                {
+                                                    <label>
+                                                        <input type="radio" class="option-input radio" name="goldenpay" value="@item.Id" />
+                                                        <span>
+                                                            <strong id="radio-strong">@item.Name</strong>
+                                                            @{
+                                                                int price = (int)item.Price;
+                                                            }
+                                                            <span id="price-span"><b>@price €</b></span>
+                                                        </span>
+                                                    </label>
+                                                }
+                                            </div>
+                                            @Html.Hidden("goldenpayId")
+                                            <div class="row justify-content-md-center">
+                                                <div class="col col-lg-12 " style="padding-right:0px;font-size:16px">
+                                                    <button type="button" onclick="goldenPay()" class="btn-primary goldenbtn">Odenis et</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+                @using (Ajax.BeginForm("update", FormMethod.Post,
+         new AjaxOptions { OnSuccess = "OnSuccess", OnBegin = "OnLoading", OnFailure = "OnFailure" }))
+                {
+                    @Html.HiddenFor(m => m.Id)
+                    @Html.HiddenFor(m => m.PricePlanId)
+                    <div class="card padding-card t-align-l no-radius border">
+                        <div class="card-body t-align-l">
+                            <h5 class="card-title mb-4">@UI.PersonalDetails</h5>
+                            <div class="form-group">
+                                <label>@UI.FirstName <span class="text-danger">*</span></label>
+                                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", placeholder = UI.FirstName })
+                                @Html.ValidationMessageFor(m => m.FirstName)
+                            </div>
+                            <div class="form-group">
+                                <label>@UI.LastName <span class="text-danger">*</span></label>
+                                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", placeholder = UI.LastName })
+                                @Html.ValidationMessageFor(m => m.LastName)
+                            </div>
+                            <div class="form-group">
+                                <label>@UI.Email <span class="text-danger">*</span></label>
+                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = UI.Email, @readonly = true })
+                                @Html.ValidationMessageFor(m => m.Email)
+                            </div>
+
+                            @Html.Partial("Partials/CustomerPhonePartials/_CustomerPhonePartial", Model.CustomerNumbers)
+
+                            <div class="form-group">
+                                <label>@UI.Address <span class="text-danger">*</span></label>
+                                @Html.TextBoxFor(m => m.Address, new { @class = "form-control", placeholder = UI.Address })
+                            </div>
+                            <div class="form-group">
+                                <label>@UI.AboutMe <span class="text-danger">*</span></label>
+                                @Html.TextAreaFor(m => m.About, new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-lg">
+                        @UI.Confirm
+                    </button>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+@section scripts {
+
+    <script type="text/javascript">
+
+        function OnSuccess(response) {
+            if (response.IsSucceed) {
+                location.reload();
+            }
+            else {
+                alertify.error(response.Description);
+            }
+        }
+    </script>
+
+    <script type="text/javascript">
+        function OnSuccessChangePassword(response) {
+
+            if (response.IsSucceed) {
+                alertify.success(response.Description);
+                document.getElementById("myform").reset();
+            }
+            else {
+                alertify.error(response.Description);
+            }
+        }
+    </script>
+
+    <script>
+        function AddCustomerPhone() {
+            var length = parseInt($('#customerphonesRow div').children('.form-group').length);
+            if (length < 3) {
+                $.ajax({
+                    type: 'GET',
+                    url: '@Url.Action("AddCustomerPhone", "Customer")',
+                    cache: false,
+                    data: { length: length },
+                    success: function (htmlData) {
+                        $('#customerphonesRow').append(htmlData);
+                        if (length == 2)
+                            $("#addBtn").hide();
+                        $("form").removeData("validator");
+                        $("form").removeData("unobtrusiveValidation");
+                        $.validator.unobtrusive.parse("form");
+                    },
+                    error: function () {
+                        alert('Error!');
+                    }
+                });
+            }
+            else
+            $("#addBtn").hide();
+        }
+
+        function RemovePhone(e) {
+            var length = parseInt($('#customerphonesRow div').children('.form-group').length);
+            if (length > 1) {
+            var btn = $(e);
+            var id = $(e).attr("data-id");
+            $.ajax({
+                type:'GET',
+                url: '@Url.Action("RemoveCustomerPhone", "Customer")',
+                cache: false,
+                data: { id: id },
+                success: function () {
+                    if (length < 4)
+                        $("#addBtn").show();
+                        btn.parent().parent().parent().remove();
+                },
+                error: function () {
+                    alert('Error!');
+                }
+                });
+            }
+
+        }
+
+    $(function () {
+        $("#radioPricePlan input:radio[name=goldenpay]:first").attr('checked', true);
+        $("#goldenpayId").val($("#radioPricePlan input:radio[name=goldenpay]:first").val());
+    })
+
+    $("#radioPricePlan input:radio[name=goldenpay]").change(function () {
+        $("#goldenpayId").val($(this).val());
+        alert($(this).val())
+    });
+    function goldenPay() {
+        var priceplanid = $("#goldenpayId").val();
+        var customerId = $("#Id").val();
+        $.ajax({
+            type: 'POST',
+            dataType: "json",
+            url: '@Url.Action("UpdatePricePlan", "Customer")',
+            data: { id: priceplanid, customerId: customerId },
+            success: function (response) {
+                if (response.IsSucceed)
+                    location.href = response.Description
+            },
+            error: function (response) {
+                alert(response);
+            }
+        });
+    }
+
+    </script>
+}

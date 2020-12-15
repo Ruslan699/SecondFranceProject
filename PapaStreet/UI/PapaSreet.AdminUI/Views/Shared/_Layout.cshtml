@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>PapaStreet Admin</title>
+    @Styles.Render("~/Content/template")
+    @Styles.Render("~/Content/site")
+    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/DevExtremeBundle")
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/Scripts/DevExtremeBundle")
+
+</head>
+<body>
+    @Html.Partial("Partials/_HeaderPartial")
+    <div class="page-content">
+        @Html.Partial("Partials/_SidebarPartial")
+        <div class="content-wrapper">
+            @Html.Partial("Partials/_PageHeaderPartial")
+            <div class="content">
+                @RenderBody()
+                @Html.Partial("Partials/_RemoveModalPartial")
+            </div>
+            @Html.Partial("Partials/_FooterPartial")
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryUnobtrusive")
+    @Scripts.Render("~/bundles/template")
+    @Scripts.Render("~/bundles/site")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

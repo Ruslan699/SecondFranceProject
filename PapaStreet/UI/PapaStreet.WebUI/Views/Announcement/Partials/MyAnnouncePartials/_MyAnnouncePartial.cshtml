@@ -1,0 +1,31 @@
+﻿@model PapaStreet.WebUI.Models.AnnouncementModel
+@using PapaStreet.Common.Resources
+<div class="col-lg-12 col-md-12 property-list-view">
+    <div class="card card-list card-list-view">
+        <a href="@Url.Action("items","announcement",new { id=@Model.Id})">
+            <div class="row no-gutters">
+                <div class="col-lg-5 col-md-5">
+                    <span class="badge badge-success">@Model.AnnouncementType.Name</span>
+                        <img class="card-img-top" style="height: 205px" src="@Model.AnnouncementImages.FirstOrDefault().Base64StringImage" alt="Card image cap">
+                    
+                    <h5 class="card-title">@Model.City.Name</h5>
+                </div>
+                <div class="col-lg-7 col-md-7">
+                    <div class="card-body">
+                        <h6 class="card-subtitle mb-2 text-muted"><i class="mdi mdi-home-map-marker"></i> @Model.Address</h6>
+
+                    </div>
+                    <div class="card-footer">
+                        <p style="height: 49px;overflow: hidden;">@Model.PropertyDescription</p>
+                        <span><i class="mdi mdi-home-modern"></i><strong> @Model.PropertyType.Name</strong></span>
+                        <span><i class="mdi mdi-scale-bathroom"></i> @UI.RoomCount : <strong>@Model.RoomCount</strong></span>
+                        <span><i class="mdi mdi-move-resize-variant text-center"></i> @UI.Area : <strong>@Model.Area m<sup>2</sup></strong></span>
+                    </div>
+                    <h4 class="text-primary mb-0 mt-2">
+                        $@Model.Amount @*<small>/month</small>*@
+                    </h4>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>

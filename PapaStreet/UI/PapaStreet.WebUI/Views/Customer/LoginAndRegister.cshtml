@@ -1,0 +1,56 @@
+﻿@using PapaStreet.Common.Resources
+<!-- End Navbar -->
+<section class="section-padding bg-dark inner-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h1 class="mt-0 mb-3">@UI.SignUp</h1>
+                <div class="breadcrumbs">
+                    <p class="mb-0"><a href="@Url.Action("Index","Home")"><i class="mdi mdi-home-outline"></i> @UI.Home</a> / @UI.SignUp</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section-padding">
+    <div class="container">
+        <div class="row">
+            <!-- Login -->
+            @Html.Partial("Partials/_Login")
+            <!-- Register -->
+            @Html.Partial("Partials/_Register")
+        </div>
+    </div>
+</section>
+
+@section scripts {
+    <script type="text/javascript">
+        function OnSuccessLogin(response) {
+            if (response.IsSucceed) {
+                location.href = '@Url.Action("Index","Home")';
+                $("#loading").css('display', 'none');
+            }
+            else {
+                $("#loading").css('display', 'none');
+                //$('#btnSubmit').attr("disabled", "disabled");
+                alertify.error(response.Description);
+            }
+        }
+
+
+        function OnSuccessRegister(response) {
+            if (response.IsSucceed) {
+                PricePlanDetailsModal('@Url.Action("Index","PricePlan")');
+                @*location.href = '@Url.Action("Index","Home")';*@
+                $("#loading").css('display', 'none');
+            }
+            else {
+                $("#loading").css('display', 'none');
+                //$('#btnSubmit').attr("disabled", "disabled");
+                alertify.error(response.Description);
+            }
+        }
+
+    </script>
+    }
+

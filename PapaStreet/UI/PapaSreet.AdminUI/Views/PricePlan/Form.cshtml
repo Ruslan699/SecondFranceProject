@@ -1,0 +1,98 @@
+﻿@using PapaStreet.Common.Resources
+@model PapaSreet.AdminUI.Models.PricePlanViewModel
+
+@{
+    ViewBag.Title = "Form";
+}
+
+<div class="card">
+    <div class="card-header header-elements-inline">
+        <div class="header-elements">
+            <div class="list-icons">
+                <a class="list-icons-item" data-action="collapse"></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-body">
+
+        @using (Ajax.BeginForm("Save", "PricePlan", FormMethod.Post, new AjaxOptions { OnSuccess = "OnSuccess", OnBegin = "OnLoading", OnFailure = "OnFailure" }))
+
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(m => m.Id)
+            @Html.HiddenFor(s => s.Status)
+        <div class="row">
+
+            <div class="col-lg-12">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Name)
+                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = UI.Name })
+                    @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.FrequencyId)
+                    @Html.DropDownListFor(m => m.FrequencyId, new SelectList(Model.Frequencies, "Id", "Name"), "----", new { @class = "form-control", placeholder = UI.AnnouncementCount })
+                    @Html.ValidationMessageFor(m => m.FrequencyId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.DurationId)
+                    @Html.DropDownListFor(m => m.DurationId, new SelectList(Model.Durations, "Id", "Name"), "----", new { @class = "form-control", placeholder = UI.AnnouncementCount })
+                    @Html.ValidationMessageFor(m => m.DurationId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Price)
+                    @Html.TextBoxFor(m => m.Price, new { @class = "form-control", placeholder = UI.Price })
+                    @Html.ValidationMessageFor(m => m.Price, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.AnnouncementCount)
+                    @Html.TextBoxFor(m => m.AnnouncementCount, new { @class = "form-control", placeholder = UI.AnnouncementCount })
+                    @Html.ValidationMessageFor(m => m.AnnouncementCount, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.BonusAnnouncementCount)
+                    @Html.TextBoxFor(m => m.BonusAnnouncementCount, new { @class = "form-control", placeholder = UI.BonusAnnouncementCount })
+                    @Html.ValidationMessageFor(m => m.BonusAnnouncementCount, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="col-lg-12">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Description)
+                    @Html.TextBoxFor(m => m.Description, new { @class = "form-control", placeholder = UI.Description })
+                    @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+            <div class="d-flex justify-content-start align-items-center">
+                <a href="@Url.Action("Index","PricePlan")" class="btn btn-light">@UI.Back</a>
+                <button type="submit" class="btn bg-blue ml-3">@UI.Confirm</button>
+            </div>
+        }
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        function OnSuccess(data) {
+            if (data.IsSucceed)
+                location.href = '@Url.Action("Index", "PricePlan")';
+            else {
+                var result = data.FailureResult.join(', ');
+                alert(result);
+            }
+        }
+    </script>
+    }

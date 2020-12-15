@@ -1,0 +1,27 @@
+﻿@model PapaSreet.AdminUI.Models.SaveAnnouncementImageViewModel
+@using PapaStreet.Common.Resources
+<div class="form-group col-md-12 upload-btn-wrapper">
+    <button class="btnImage">@UI.UploadImages</button>
+    <input type="file" id="upload_file" name="files" onchange="preview_image();" multiple />
+    <div id="image_preview" class="row" style="margin-top:20px">
+        @using (Ajax.BeginForm("SaveAnnouncementImage", "Announcement", new { id = Model.Id },
+           new AjaxOptions { HttpMethod = "POST" },
+           new { @class = "dropzone", id = "mydropzone", enctype = "multipart/form-data" }))
+        {
+        }
+    </div>
+</div>
+
+@section scripts{
+
+    <script type="text/javascript">
+        Dropzone.autoDiscover = false;
+        $(function () {
+            $("#mydropzone").dropzone({
+                autoProcessQueue: false,
+                addRemoveLinks: true,
+                uploadMultiple: true
+            });
+        })
+    </script>
+}

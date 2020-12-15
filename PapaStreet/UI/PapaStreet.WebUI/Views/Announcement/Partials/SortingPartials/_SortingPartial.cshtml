@@ -1,0 +1,22 @@
+﻿@using PapaStreet.Common.Resources
+@using PapaStreet.Common.Constants
+<div class="samar_top_filter row">
+    <div class="col-lg-6 col-md-6 tags-action" id="documenttypeId">
+        @*<span>Center Cooling <a href="#"><i class="mdi mdi-window-close"></i></a></span>
+        <span>Heating <a href="#"><i class="mdi mdi-window-close"></i></a></span>*@
+    </div>
+    <div class="col-lg-6 col-md-6 sort-by-btn float-right">
+        <div class="dropdown float-right">
+            <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="mdi mdi-filter"></i> Trier par
+            </button>
+
+            <div class="dropdown-menu float-right" aria-labelledby="dropdownMenuButton" id="sorting">
+                <button class="dropdown-item sorting" id="1"><i class="mdi mdi-chevron-right"></i> @UI.Date </button>
+                <button class="dropdown-item sorting" id="2"><i class="mdi mdi-chevron-right"></i> @UI.Area </button>
+                <button class="dropdown-item sorting" id="3"><i class="mdi mdi-chevron-right"></i> @UI.PriceLowtoHigh </button>
+                <button class="dropdown-item sorting" id="4"><i class="mdi mdi-chevron-right"></i> @UI.PriceHightoLow </button>
+            </div>
+        </div>
+    </div>
+</div>

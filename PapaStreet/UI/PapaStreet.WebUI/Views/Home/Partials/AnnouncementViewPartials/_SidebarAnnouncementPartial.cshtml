@@ -1,0 +1,67 @@
+﻿@model PapaStreet.WebUI.ViewModels.AnnouncementCommonViewModel
+@using PapaStreet.Common.Resources
+<div class="card inner-side-bar">
+    <div class="card-body">
+        <h5 class="card-title mb-3">@UI.PropertyType</h5>
+        <ul class="sidebar-card-list">
+            @foreach (var item in Model.PropertyTypes)
+            {
+                <li><a href="@Url.Action("Index","Announcement",new { @PropertyTypes=item.Id})">
+                    <i class="mdi mdi-chevron-right">
+                        </i> @item.Name 
+                    <span class="sidebar-badge">@Model.AllAnnouncements.Where(x => x.PropertyTypeId == item.Id).Count()</span>
+                    </a>
+                 </li>
+            }
+        </ul>
+    </div>
+</div>
+@*<div class="card inner-side-bar">
+    <div class="card-body property-features-add">
+        <h5 class="card-title mb-3">@UI.DocumentType</h5>
+        @foreach (var item in Model.DocumentTypes)
+        {
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="@item.Id" value="@item.Name">
+                <label class="custom-control-label" for="@item.Id">@item.Name</label>
+            </div>
+        }
+    </div>
+</div>*@
+<div class="card inner-side-bar">
+    <div class="card-body">
+        <h5 class="card-title mb-3">@UI.AnnouncementType</h5>
+        <ul class="sidebar-card-list">
+            @foreach (var item in Model.AnnouncementTypes)
+            {
+                <li><a href="@Url.Action("Index","Announcement",new { @announcementtype=item.Id})">
+                    <i class="mdi mdi-chevron-right"></i> 
+                    @item.Name
+                    <span class="sidebar-badge">@Model.AllAnnouncements.Where(x => x.AnnouncementTypeId == item.Id).Count()
+                        </span>
+                    </a>
+                 </li>
+
+            }
+        </ul>
+    </div>
+</div>
+<div class="card inner-side-bar">
+    <div class="card-body">
+        <h5 class="card-title mb-3">@UI.Cities</h5>
+        <ul class="sidebar-card-list">
+            @foreach (var item in Model.TopCities)
+            {
+                <li>
+                    <a href="@Url.Action("Index","Announcement",new { @CityName=item.Item1})">
+                        <i class="mdi mdi-chevron-right"></i>
+                        @item.Item1
+                        <span class="sidebar-badge">
+                            @item.Item2
+                        </span>
+                    </a>
+                </li>
+            }
+        </ul>
+    </div>
+</div>

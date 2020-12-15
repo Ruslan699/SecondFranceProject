@@ -1,0 +1,202 @@
+﻿@using PapaStreet.Common.Resources
+@model PapaSreet.AdminUI.Models.AnnouncementViewModel
+
+<div>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label>@UI.ContactPerson</label>
+                @Html.TextBoxFor(m => m.ContactPerson, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.ContactPerson, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label>@UI.Email</label>
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        @Html.Partial("Partials/_PhonePartial", Model.PhoneNumbers)
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+            <div class="form-group">
+                <label>@UI.Departaments</label>
+                @Html.DropDownList("Department", new SelectList(ViewBag.Departaments, "Id", "Name"), "----", new { @class = "form-control custom-select" })
+                @Html.ValidationMessageFor(m => m.CityId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+            <div class="form-group">
+                <label>@UI.Cities</label>
+                @Html.DropDownListFor(m => m.CityId, new SelectList(ViewBag.Cities, "Id", "Name"), "----", new { @class = "form-control custom-select" })
+                @Html.ValidationMessageFor(m => m.CityId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                <div class="form-group">
+                    <label>@UI.VendorType</label>
+                    @Html.EnumDropDownListFor(m => m.VendorType, "----", new { @class = "form-control custom-select" })
+                    @Html.ValidationMessageFor(m => m.VendorType, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                <div class="form-group">
+                    <label>@UI.AnnouncementType</label>
+                    @Html.DropDownListFor(m => m.AnnouncementTypeId, new SelectList(ViewBag.AnnouncementTypes, "Id", "Name"), "----", new { @class = "form-control custom-select" })
+                    @Html.ValidationMessageFor(m => m.AnnouncementTypeId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                <div class="form-group">
+                    <label>@UI.PropertyType</label>
+                    @Html.DropDownListFor(m => m.PropertyTypeId, new SelectList(ViewBag.PropertyTypes, "Id", "Name"), "----", new { @class = "form-control custom-select" })
+                    @Html.ValidationMessageFor(m => m.PropertyTypeId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                <div class="form-group">
+                    <label>@UI.RoomCount</label>
+                    @Html.TextBoxFor(m => m.RoomCount, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.RoomCount, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                <div class="form-group">
+                    <label>@UI.Area (m<sup>2</sup>)</label>
+                    @Html.TextBoxFor(m => m.Area, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Area, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                <div class="form-group">
+                    <label>@UI.CurrentFloor</label>
+                    @Html.TextBoxFor(m => m.CurrentFloor, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.CurrentFloor, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                <div class="form-group">
+                    <label>@UI.FloorCount</label>
+                    @Html.TextBoxFor(m => m.FloorCount, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.FloorCount, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                <div class="form-group">
+                    <label>@UI.Amount</label>
+                    @Html.TextBoxFor(m => m.Amount, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Amount, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+
+            @if (Model.AnnouncementAdditionalNames == null)
+            {
+                foreach (var item in ViewBag.AnnouncementAdditionals)
+                {
+                    <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2" style="margin-left:10px;">
+                        <div class="custom-control custom-checkbox" style="margin-top:10px;">
+                            <input type="checkbox" name="AnnouncementAdditionals[]" class="custom-control-input" id="@item.Id" value="@item.Id">
+                            <label class="custom-control-label" for="@item.Id">@item.Name</label>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                foreach (var item in Model.AnnouncementAdditionalNames)
+                {
+                    <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2" style="margin-left:10px;">
+                        <div class="custom-control custom-checkbox" style="margin-top:10px;">
+                            <input type="checkbox" name="AnnouncementAdditionals[]" class="custom-control-input" checked  value="@item">
+                            <label class="custom-control-label" for="@item">@item</label>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    <br />
+    <br />
+
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label>@UI.PropertyDescription</label>
+                    @Html.TextAreaFor(m => m.PropertyDescription, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.PropertyDescription, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label>@UI.Address</label>
+                    @Html.TextBoxFor(m => m.Address, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Address, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        @if (Model != null && Model.Id == default(Guid))
+        {
+            <div class="row">
+                @Html.Partial("Partials/_AnnounceImagesPartial")
+            </div>
+        }
+        else
+        {
+            <div class="row">
+                @Html.Partial("Partials/_SaveAnnouncementImagePartial",
+                      new PapaSreet.AdminUI.Models.SaveAnnouncementImageViewModel() { AnnouncementId = Model.Id })
+            </div>
+        }
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="row">
+                    @foreach (var item in Model.AnnouncementImages)
+                    {
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3" style="overflow:hidden;margin-top:10px">
+                            <div class="mt-1">
+                                <a class="icon-cancel-circle2 circle btn" style="color: red"
+                                onclick="RemoveAnnouncementImage('@Url.Action("RemovePicture", "Announcement")', '@item.Id')"></a>
+                            </div>
+                            <img src="@item.Base64StringImage" alt="Image" height="200" width="250" />
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="form-group">
+                    <div class="d-flex justify-content-start align-items-center">
+                        <button type="button" class="btn btn-light legitRipple" onclick="GoBack()">
+                            @UI.Back
+                        </button>
+                        <button type="submit" class="btn bg-blue ml-3 legitRipple">
+                            @UI.Confirm
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>

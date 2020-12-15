@@ -1,0 +1,31 @@
+﻿@using PapaStreet.Common.Resources
+@using PapaStreet.WebUI.Models
+@model CustomerModel
+<div class="col-lg-6 col-md-6 mx-auto" style="max-height: 400px">
+    <div class="card padding-card no-radius border t-align-l h-100">
+        <div class="card-body">
+            <h5 class="card-title mb-4">@UI.SignIn</h5>
+            @using (Ajax.BeginForm("login", FormMethod.Post,
+                new AjaxOptions { OnSuccess = "OnSuccessLogin", OnBegin = "OnLoading", OnFailure = "OnFailure" }))
+            {
+                <div class="form-group">
+                    <label>@UI.Email <span class="text-danger">*</span></label>
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = UI.Email })
+                    @Html.ValidationMessageFor(m => m.Email)
+                </div>
+                <div class="form-group">
+                    <label>@UI.Password <span class="text-danger">*</span></label>
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = UI.Password })
+                    @Html.ValidationMessageFor(m => m.Password)
+                </div>
+                <button type="submit" class="btn btn-primary btn-lg btn-block">
+                    @Html.Partial("_Loading") @UI.SignIn
+                </button>
+            }
+            <div class="mt-2 text-center">
+                <a href="#">@UI.ForgotYourPassword</a>
+            </div>
+        </div>
+    </div>
+</div>
+

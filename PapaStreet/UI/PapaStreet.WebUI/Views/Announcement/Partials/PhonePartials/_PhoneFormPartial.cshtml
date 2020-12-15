@@ -1,0 +1,16 @@
+﻿@using PapaStreet.Common.Resources
+@model PapaStreet.WebUI.Models.PhoneNumberModel
+
+@using (Html.BeginCollectionItem("PhoneNumbers"))
+{
+    <div class="form-group">
+        <div class="input-group form-group" style="padding:0px">
+            <div class="input-group-append">
+                <button type="button" class="input-group-text " onclick="RemovePhone(this)">-</button>
+            </div>
+            @Html.TextBoxFor(m => m.Number, new { @class = "form-control bfh-phone", @placeholder = UI.PhoneNumber, })
+        </div>
+        @Html.ValidationMessageFor(m => m.Number)
+    </div>
+}
+

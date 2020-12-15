@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Giftechies">
+    <meta name="author" content="Giftechies">
+    <title>PapaStreet.com</title>
+    <meta property="og:url" content="@ViewBag.Url" />
+    <meta property="og:type" content="@ViewBag.Type" />
+    <meta property="og:title" content="@ViewBag.Title" />
+    <meta property="og:description" content="@ViewBag.Description" />
+    @if (ViewBag.Images != null)
+    {
+        foreach (var item in ViewBag.Images)
+        {
+            <meta property="og:image" content="@item" />
+        }
+    }
+
+
+    @Styles.Render("~/Content/theme")
+    @Scripts.Render("~/bundles/modernizr")
+    @RenderSection("Styles", false)
+</head>
+<body>
+    @Html.Partial("_Header")
+    @RenderBody()
+    @Html.Partial("_Footer")
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryUnobtrusiveAjax")
+    @Scripts.Render("~/bundles/theme")
+    @Scripts.Render("~/bundles/site")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

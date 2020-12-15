@@ -1,0 +1,103 @@
+﻿@model PapaStreet.WebUI.ViewModels.AnnouncementCommonViewModel
+@using PapaStreet.Common.Resources
+<link href="~/Content/AnnounceRadio.css" rel="stylesheet" />
+<div class="slider-form inner-page-form">
+    <div class="container">
+        <h1 class="text-left mb-5 text-white"></h1>
+        @using (Html.BeginForm("Index", "Announcement", FormMethod.Get))
+        {
+            <input type="hidden" id="pageSearch" name="page">
+            <div class="row no-gutters">
+                <div class="col-lg-3 col-md-4 col-sm-6 col-6" style="background-color: white;padding: 8px 1px;max-height:58px;margin-top:1px;">
+                    <div class="row radio-toolbar">
+                        @foreach (var item in Model.AnnouncementTypes)
+                        {
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+                                <input type="radio" name="announcementtype" class="custom-control-input" id="@item.Id" 
+                                       value="@item.Id" @*@(item.Id == Guid.Parse(Request.QueryString["announcementtype"])? "checked":null)*@ />
+                                <label for="@item.Id">@item.Name</label>
+                            </div>
+                        }
+                    </div>
+                </div>
+               
+                <div class="col-lg-3 col-md-4 col-sm-6 col-6">
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="mdi mdi-map-marker-multiple"></i></div>
+                        @Html.DropDownListFor(m=>m.PropertyTypes,new SelectList(Model.PropertyTypes,"Id","Name")
+                            ,UI.PropertyType, new { @class = "form-control select2" })
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-sm-6 col-6">
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="mdi mdi-map-marker-multiple"></i></div>
+                        @Html.DropDownListFor(m=>m.Departaments,new SelectList(Model.Departaments,"Id","Name")
+                            ,UI.Departaments, new { @class = "form-control select2", @onchange = "departaments(this.value)", @id = "DepartamentsId" })
+                        </div>
+                </div>
+               
+                <div class="col-lg-3 col-md-4 col-sm-6 col-6" style="background-color: white;margin-top: 1px;">
+                    <div class="input-group">
+                        <div class="input-group-addon"> @UI.Cities</div>
+                        @Html.DropDownListFor(c => c.Cities, Model.Cities.Select(f => new SelectListItem
+                   {
+                       Value = f.Id.ToString(),
+                       Text = f.Name
+                   }), new { @class = "form-control select2", @id = "CitiesId", multiple = "multiple" })
+                    </div>
+                </div>
+
+                
+                <div class="col-lg-3 col-md-4 col-sm-6 col-6">
+                    <div class="input-group">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-6" style="padding-right:0px">
+                                <div class="input-group-addon"><i class="mdi mdi-magnify-minus-outline"></i></div>
+                                <input class="form-control" type="text" name="minarea" value="@Request.QueryString["minarea"]" placeholder=" @UI.Area Min" />
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-6" style="padding-left:0px">
+                                <div class="input-group-addon"><i class="mdi mdi-magnify-plus-outline"></i></div>
+                                <input class="form-control" type="text" name="maxarea" value="@Request.QueryString["maxarea"]" placeholder=" @UI.Area Max" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 col-6">
+                    <div class="input-group">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-6" style="padding-right:0px">
+                                <div class="input-group-addon"><i class="mdi mdi-magnify-minus-outline"></i></div>
+                                <input class="form-control" type="text" name="minroomcount" value="@Request.QueryString["minroomcount"]" placeholder=" @UI.RoomCount Min" />
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-6" style="padding-left:0px">
+                                <div class="input-group-addon"><i class="mdi mdi-magnify-plus-outline"></i></div>
+                                <input class="form-control" type="text" name="maxroomcount" value="@Request.QueryString["maxroomcount"]" placeholder="@UI.RoomCount Max" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-sm-6 col-6">
+                    <div class="input-group">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-6" style="padding-right:0px">
+                                <div class="input-group-addon"><i class="mdi mdi-magnify-minus-outline"></i></div>
+                                <input class="form-control" type="text" name="minprice" value="@Request.QueryString["minprice"]" placeholder="@UI.Amount Min " />
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-6" style="padding-left:0px">
+                                <div class="input-group-addon"><i class="mdi mdi-magnify-plus-outline"></i></div>
+                                <input class="form-control" type="text" name="maxprice" value="@Request.QueryString["maxprice"]" placeholder=" @UI.Amount Max" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-lg-3 col-md-4 col-sm-6 col-6">
+                    <div class="input-group"><button type="submit" class="btn btn-secondary btn-block no-radius font-weight-bold">@UI.Search</button>   </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

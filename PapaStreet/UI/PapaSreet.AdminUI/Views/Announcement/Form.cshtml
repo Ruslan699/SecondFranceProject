@@ -1,0 +1,98 @@
+﻿@using PapaStreet.Common.Resources
+@model PapaSreet.AdminUI.Models.AnnouncementViewModel
+<div class="card">
+    <div class="card-header header-elements-inline">
+        <div class="header-elements">
+            <div class="list-icons">
+                <a class="list-icons-item" data-action="collapse"></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-body">
+        @using (Ajax.BeginForm("Save", "Announcement",
+             new AjaxOptions
+             {
+                 HttpMethod = "POST",   
+                 OnSuccess = "OnSuccess",
+                 OnBegin =   "OnLoading",
+                 OnFailure = "OnFailure"
+             }, 
+             new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(m => m.Id)
+            @Html.Partial("Partials/_AnnouncementFormPartial", Model)
+        }
+    </div>
+</div>
+
+@section scripts {
+    <script type="text/javascript">
+
+        function SaveAnnImage() {
+            $('#SaveAnnouncementImageFormId').submit();
+            location.reload();
+
+        }
+        function OnSuccess(data) {
+            if (data.IsSucceed) {
+                location.href = '@Url.Action("Index","Announcement")';
+            }
+            else {
+                var result = data.FailureResult.join(' , ');
+                alert(result);
+            }
+        }
+
+        function preview_image() {
+            var total_file = document.getElementById("upload_file").files.length;
+            var colmd3 = "col-md-3";
+            for (var i = 0; i < total_file; i++)
+            {
+                $('#image_preview').append("<div class = '" + colmd3 + "'><img src='" + URL.createObjectURL(event.target.files[i]) + "'><div>");
+                $('#image_preview div').css({ "margin-bottom": "10px" });
+                $('#image_preview div img').css({ "height": "150px" });
+            }
+        }
+
+        $(function () {
+            var length = parseInt($('#phonesRow div').children('.form-group').length);
+            if (length == 1)
+                $('#phonesRow div .input-group-append').remove()
+        });
+
+        function AddPhone() {
+            var length = parseInt($('#phonesRow div').children('.form-group').length);
+            let __RequestVerificationToken = $("input[name='__RequestVerificationToken']").val();
+            if (length < 3) {
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("AddPhone", "Announcement")',
+                    cache: false,
+                    data: { length: length, __RequestVerificationToken: __RequestVerificationToken },
+                    success: function (htmlData) {
+                        $('#phonesRow').append(htmlData);
+                        if (length == 2)
+                            $("#addBtn").hide();
+                        $("form").removeData("validator");
+                        $("form").removeData("unobtrusiveValidation");
+                        $.validator.unobtrusive.parse("form");
+                    },
+                    error: function () {
+                        alert('Error!');
+                    }
+                });
+            }
+        }
+
+    </script>
+}
+
+
+
+
+
+
+

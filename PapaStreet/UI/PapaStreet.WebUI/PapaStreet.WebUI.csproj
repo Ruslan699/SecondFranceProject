@@ -1,0 +1,516 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <Import Project="..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{FFDEF02E-4BAD-4DAC-9A80-DCF04A4B1C2D}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PapaStreet.WebUI</RootNamespace>
+    <AssemblyName>PapaStreet.WebUI</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TypeScriptToolsVersion>3.1</TypeScriptToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=8.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AutoMapper.8.0.0\lib\net461\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="BeginCollectionItem, Version=1.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\BeginCollectionItem.1.2.1.0\lib\net35\BeginCollectionItem.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="LightInject, Version=5.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\LightInject.5.4.0\lib\net46\LightInject.dll</HintPath>
+    </Reference>
+    <Reference Include="LightInject.Mvc, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\LightInject.Mvc.2.0.0\lib\net46\LightInject.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="LightInject.ServiceLocation, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\LightInject.ServiceLocation.1.0.0.2\lib\net45\LightInject.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="LightInject.Web, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\LightInject.Web.2.0.0\lib\net46\LightInject.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO" />
+    <Reference Include="System.Linq.Expressions" />
+    <Reference Include="System.Runtime" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Threading.Tasks" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\packages\Microsoft.AspNet.Mvc.5.2.4\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\packages\Microsoft.AspNet.Razor.3.2.4\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Diagnostics.DiagnosticSource">
+      <HintPath>..\..\packages\System.Diagnostics.DiagnosticSource.4.4.1\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.TelemetryCorrelation">
+      <HintPath>..\..\packages\Microsoft.AspNet.TelemetryCorrelation.1.0.0\lib\net45\Microsoft.AspNet.TelemetryCorrelation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\MapperConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\ServiceConfig.cs" />
+    <Compile Include="Connected Services\LesAgencesService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\AnnouncementController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PricePlanController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AnnouncementModel\AnnouncementAdditionalModel.cs" />
+    <Compile Include="Models\AnnouncementModel\AnnouncementImageModel.cs" />
+    <Compile Include="Models\AnnouncementModel\AnnouncementModel.cs" />
+    <Compile Include="Models\AnnouncementModel\AnnouncementTypeModel.cs" />
+    <Compile Include="Models\AnnouncementModel\DocumentTypeModel.cs" />
+    <Compile Include="Models\AnnouncementModel\PropertyTypeModel.cs" />
+    <Compile Include="Models\AnnouncementModel\RepairModel.cs" />
+    <Compile Include="Models\BaseModel.cs" />
+    <Compile Include="Models\AnnouncementModel\CityModel.cs" />
+    <Compile Include="Models\AnnouncementModel\PhoneNumberModel.cs" />
+    <Compile Include="Models\CommonModel\DepartamentCityModel.cs" />
+    <Compile Include="Models\CommonModel\RegionDepartamentModel.cs" />
+    <Compile Include="Models\CustomerModel\CustomerModel.cs" />
+    <Compile Include="Models\CustomerModel\CustomerPhoneNumberModel.cs" />
+    <Compile Include="Models\DepartamentModel\DepartamentModel.cs" />
+    <Compile Include="Models\RegionModel\RegionModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\AuthFilter.cs" />
+    <Compile Include="Security\Identity.cs" />
+    <Compile Include="ServiceFacades\AnnouncementServiceFacades\AnnouncementAdditionServiceFacade.cs" />
+    <Compile Include="ServiceFacades\AnnouncementServiceFacades\AnnouncementImageServiceFacade.cs" />
+    <Compile Include="ServiceFacades\AnnouncementServiceFacades\AnnouncementServiceFacade.cs" />
+    <Compile Include="ServiceFacades\AnnouncementServiceFacades\AnnouncementTypeServiceFacade.cs" />
+    <Compile Include="ServiceFacades\BaseServiceFacade.cs" />
+    <Compile Include="ServiceFacades\AnnouncementServiceFacades\CityServiceFacade.cs" />
+    <Compile Include="ServiceFacades\CommonServiceFacades\CommonServiceFacade.cs" />
+    <Compile Include="ServiceFacades\CommonServiceFacades\DepartamentCityServiceFacade.cs" />
+    <Compile Include="ServiceFacades\CommonServiceFacades\RegionDepartamentServiceFacade.cs" />
+    <Compile Include="ServiceFacades\CustomerServiceFacades\CustomerPhoneNumberServiceFacade.cs" />
+    <Compile Include="ServiceFacades\CustomerServiceFacades\CustomerServiceFacade.cs" />
+    <Compile Include="ServiceFacades\AnnouncementServiceFacades\DocumentTypeServiceFacade.cs" />
+    <Compile Include="ServiceFacades\DepartamentServiceFacades\DepartamentServiceFacade.cs" />
+    <Compile Include="ServiceFacades\OtherAnnouncementServiceFacades\GenericAnnouncementServiceFacade.cs" />
+    <Compile Include="ServiceFacades\IBaseServiceFacade.cs" />
+    <Compile Include="ServiceFacades\AnnouncementServiceFacades\PhoneNumberServiceFacade.cs" />
+    <Compile Include="ServiceFacades\AnnouncementServiceFacades\PropertyTypeServiceFacade.cs" />
+    <Compile Include="ServiceFacades\AnnouncementServiceFacades\RepairServiceFacade.cs" />
+    <Compile Include="ServiceFacades\PricePlanServiceFacades\FrequencyServiceFacade.cs" />
+    <Compile Include="ServiceFacades\PricePlanServiceFacades\PricePlanHistoryServiceFacade.cs" />
+    <Compile Include="ServiceFacades\PricePlanServiceFacades\PricePlanServiceFacade.cs" />
+    <Compile Include="ServiceFacades\RegionServiceFacades\RegionServiceFacade.cs" />
+    <Compile Include="ViewModels\AnnouncementCommonViewModel.cs" />
+    <Compile Include="ViewModels\CityDropDownViewModel.cs" />
+    <Compile Include="ViewModels\DepartamentCityViewModel.cs" />
+    <Compile Include="ViewModels\DepartamentDropDownViewModel.cs" />
+    <Compile Include="ViewModels\Pager.cs" />
+    <Compile Include="ViewModels\Search.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App\jssor.slider.css" />
+    <Content Include="App\jssor.slider.min.js" />
+    <Content Include="App\jssorfunction.js" />
+    <Content Include="Connected Services\LesAgencesService\PapaStreet.WebUI.LesAgencesService.PropertyDocumentModel.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\LesAgencesService\PapaStreet.WebUI.LesAgencesService.PropertyModel.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Connected Services\LesAgencesService\PropertyService.disco" />
+    <None Include="Connected Services\LesAgencesService\configuration91.svcinfo" />
+    <None Include="Connected Services\LesAgencesService\configuration.svcinfo" />
+    <None Include="Connected Services\LesAgencesService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="Content\alertify\alertify.min.css" />
+    <Content Include="Content\AnnounceRadio.css" />
+    <Content Include="Content\css\owl.carousel.css" />
+    <Content Include="Content\css\owl.theme.default.css" />
+    <Content Include="Content\css\samar.css" />
+    <Content Include="Content\img\LesAgencesDePapa.png" />
+    <Content Include="Content\img\svg\loading\static-svg\ball-triangle.svg" />
+    <Content Include="Content\img\svg\loading\static-svg\circles.svg" />
+    <Content Include="Content\img\svg\loading\static-svg\double-tail-spin.svg" />
+    <Content Include="Content\img\svg\loading\static-svg\oval.svg" />
+    <Content Include="Content\img\svg\loading\static-svg\spin.svg" />
+    <Content Include="Content\img\svg\loading\static-svg\tail-spin.svg" />
+    <Content Include="Content\jquery.fancybox.min.css" />
+    <Content Include="Content\PagerLoader.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\img\404.png" />
+    <Content Include="Content\img\about.jpg" />
+    <Content Include="Content\img\agency-home.jpg" />
+    <Content Include="Content\img\agency-list\1.png" />
+    <Content Include="Content\img\agency-list\2.png" />
+    <Content Include="Content\img\agency-list\3.png" />
+    <Content Include="Content\img\agency-list\4.png" />
+    <Content Include="Content\img\agency-list\5.png" />
+    <Content Include="Content\img\agent.jpg" />
+    <Content Include="Content\img\blog\1.png" />
+    <Content Include="Content\img\blog\2.png" />
+    <Content Include="Content\img\blog\3.png" />
+    <Content Include="Content\img\blog\4.png" />
+    <Content Include="Content\img\blog\5.png" />
+    <Content Include="Content\img\blog\6.png" />
+    <Content Include="Content\img\blog\7.png" />
+    <Content Include="Content\img\blog\8.png" />
+    <Content Include="Content\img\blog\9.png" />
+    <Content Include="Content\img\favicon.png" />
+    <Content Include="Content\img\list\1.png" />
+    <Content Include="Content\img\list\2.png" />
+    <Content Include="Content\img\list\3.png" />
+    <Content Include="Content\img\list\4.png" />
+    <Content Include="Content\img\list\5.png" />
+    <Content Include="Content\img\list\6.png" />
+    <Content Include="Content\img\logo.png" />
+    <Content Include="Content\img\marker.png" />
+    <Content Include="Content\img\overlay\1.png" />
+    <Content Include="Content\img\overlay\2.png" />
+    <Content Include="Content\img\overlay\3.png" />
+    <Content Include="Content\img\overlay\4.png" />
+    <Content Include="Content\img\overlay\5.png" />
+    <Content Include="Content\img\slider\1.jpg" />
+    <Content Include="Content\img\slider\2.jpg" />
+    <Content Include="Content\img\slider\3.jpg" />
+    <Content Include="Content\img\user\1.jpg" />
+    <Content Include="Content\img\user\2.jpg" />
+    <Content Include="Content\img\user\3.jpg" />
+    <Content Include="Content\img\user\4.jpg" />
+    <Content Include="Content\img\user\5.jpg" />
+    <Content Include="Content\img\video.jpg" />
+    <Content Include="Scripts\alertify\alertify.min.js" />
+    <None Include="Connected Services\LesAgencesService\PropertyService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\LesAgencesService\PropertyService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\LesAgencesService\PropertyService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\LesAgencesService\Service1.wsdl" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <Content Include="Scripts\bootstrap.bundle.js" />
+    <Content Include="Scripts\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\custom.js" />
+    <Content Include="Scripts\esm\popper-utils.js" />
+    <Content Include="Scripts\esm\popper-utils.min.js" />
+    <Content Include="Scripts\esm\popper.js" />
+    <Content Include="Scripts\esm\popper.min.js" />
+    <Content Include="Scripts\esm\popper.min.js.map" />
+    <Content Include="Scripts\esm\popper.js.map" />
+    <Content Include="Scripts\esm\popper-utils.min.js.map" />
+    <Content Include="Scripts\esm\popper-utils.js.map" />
+    <Content Include="Scripts\bootstrap.min.js.map" />
+    <Content Include="Scripts\bootstrap.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.js.map" />
+    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\bootstrap-formhelpers-phone.js" />
+    <Content Include="Scripts\dropzone\basic.css" />
+    <Content Include="Scripts\dropzone\basic.min.css" />
+    <Content Include="Scripts\dropzone\dropzone-amd-module.js" />
+    <Content Include="Scripts\dropzone\dropzone-amd-module.min.js" />
+    <Content Include="Scripts\dropzone\dropzone.css" />
+    <Content Include="Scripts\dropzone\dropzone.js" />
+    <Content Include="Scripts\dropzone\dropzone.min.css" />
+    <Content Include="Scripts\dropzone\dropzone.min.js" />
+    <Content Include="Scripts\jquery-3.3.1.js" />
+    <Content Include="Scripts\jquery-3.3.1.min.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.fancybox.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\js\contact_me.js" />
+    <Content Include="Scripts\js\custom.js" />
+    <Content Include="Scripts\js\jqBootstrapValidation.js" />
+    <Content Include="Scripts\js\owl.carousel.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\popper-utils.js" />
+    <Content Include="Scripts\popper-utils.min.js" />
+    <Content Include="Scripts\popper.js" />
+    <Content Include="Scripts\popper.min.js" />
+    <Content Include="Scripts\Site.js" />
+    <Content Include="Content\css\bootstrap.min.css" />
+    <Content Include="Scripts\js\bootstrap.bundle.min.js" />
+    <Content Include="Content\css\materialdesignicons.min.css" />
+    <Content Include="Content\fonts\materialdesignicons-webfonte761.html" />
+    <Content Include="Content\fonts\materialdesignicons-webfonte761.svg" />
+    <Content Include="Content\css\select2-bootstrap.css" />
+    <Content Include="Content\css\select2.min.css" />
+    <Content Include="Scripts\js\select2.min.js" />
+    <Content Include="Scripts\umd\popper-utils.js" />
+    <Content Include="Scripts\umd\popper-utils.min.js" />
+    <Content Include="Scripts\umd\popper.js" />
+    <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Content\fonts\materialdesignicons-webfontd41d.eot" />
+    <Content Include="Content\fonts\materialdesignicons-webfonte761.eot" />
+    <Content Include="Content\fonts\materialdesignicons-webfonte761.ttf" />
+    <Content Include="Content\fonts\materialdesignicons-webfonte761.woff" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\_Header.cshtml" />
+    <Content Include="Views\Shared\_Footer.cshtml" />
+    <Content Include="Views\Customer\Profil.cshtml" />
+    <Content Include="Views\Shared\_Loading.cshtml" />
+    <Content Include="Views\Announcement\Index.cshtml" />
+    <Content Include="Views\Announcement\Announce.cshtml" />
+    <Content Include="Views\Announcement\MyAnnounce.cshtml" />
+    <Content Include="Views\Customer\Partials\_ChangePasswordPartial.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Collection.cshtml" />
+    <Content Include="Views\Announcement\Partials\_AnnounceFormPartial.cshtml" />
+    <Content Include="Views\Announcement\Partials\AnnouncePartials\_AnnounceImagesPartial.cshtml" />
+    <Content Include="Views\Announcement\Partials\PhonePartials\_PhoneFormPartial.cshtml" />
+    <Content Include="Views\Announcement\Partials\PhonePartials\_PhonePartial.cshtml" />
+    <Content Include="Views\Announcement\Partials\MyAnnouncePartials\_MyAnnouncePartial.cshtml" />
+    <Content Include="Views\Announcement\AnnounceDetails.cshtml" />
+    <Content Include="Scripts\umd\popper.min.js.map" />
+    <Content Include="Scripts\umd\popper.js.map" />
+    <Content Include="Scripts\umd\popper-utils.min.js.map" />
+    <Content Include="Scripts\umd\popper-utils.js.map" />
+    <Content Include="Scripts\README.md" />
+    <Content Include="Scripts\popper.min.js.map" />
+    <Content Include="Scripts\popper.js.map" />
+    <Content Include="Scripts\popper-utils.min.js.map" />
+    <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\Customer\Partials\CustomerPhonePartials\_CustomerPhoneFormPartial.cshtml" />
+    <Content Include="Views\Customer\Partials\CustomerPhonePartials\_CustomerPhonePartial.cshtml" />
+    <Content Include="Views\Home\Partials\AnnouncementViewPartials\_AnnouncementPartial.cshtml" />
+    <Content Include="Views\Announcement\Partials\SearchPartials\_SearchPartial.cshtml" />
+    <Content Include="Views\Announcement\Partials\SortingPartials\_SortingPartial.cshtml" />
+    <Content Include="Views\Home\Partials\AnnouncementViewPartials\_SidebarAnnouncementPartial.cshtml" />
+    <Content Include="Views\Announcement\Partials\MyAnnouncePartials\_PaginationPartial.cshtml" />
+    <Content Include="Views\Home\Partials\LesAgencesDePapaPartials\_LesAgencesDePapaPartial.cshtml" />
+    <Content Include="Views\Error\Index.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Home\Partials\OtherAnnouncementsPartials\_OtherAnnouncementPartial.cshtml" />
+    <Content Include="Views\Announcement\OtherAnnounceDetails.cshtml" />
+    <Content Include="Views\Announcement\Partials\AnnouncementPartials\_AnnouncementPartial.cshtml" />
+    <Content Include="Views\Home\Partials\SearchPartials\_SearchPartial.cshtml" />
+    <Content Include="Views\Home\Partials\SortingPartials\_SortingPartial.cshtml" />
+    <Content Include="Views\Announcement\Partials\AnnouncementPartials\_SidebarAnnouncementPartial.cshtml" />
+    <Content Include="Views\PricePlan\Partials\PricePlanModalPartials\_ModalPartial.cshtml" />
+    <Content Include="Views\Customer\LoginAndRegister.cshtml" />
+    <Content Include="Views\Customer\Partials\_Login.cshtml" />
+    <Content Include="Views\Customer\Partials\_Register.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\PapaStreet.BLL\PapaStreet.BLL.csproj">
+      <Project>{0b8e1a05-b540-46f2-bd83-ab93d09c2f3d}</Project>
+      <Name>PapaStreet.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\PapaStreet.Common\PapaStreet.Common.csproj">
+      <Project>{dd98045e-28d5-49c3-8a5a-2498788cc663}</Project>
+      <Name>PapaStreet.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\PapaStreet.DAL\PapaStreet.DAL.csproj">
+      <Project>{3729c4e6-4590-4323-b849-f2b012774b2a}</Project>
+      <Name>PapaStreet.DAL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\index.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\LesAgencesService\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>50333</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:50333/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

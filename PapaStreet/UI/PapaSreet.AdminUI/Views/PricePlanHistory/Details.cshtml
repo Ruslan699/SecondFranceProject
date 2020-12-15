@@ -1,0 +1,77 @@
+﻿@using PapaStreet.Common.Resources
+@model PapaStreet.BLL.DTOs.PricePlanHistoryDto
+
+<div class="row">
+    <div class="col-lg-6">
+        <div class="form-group">
+            <label>@UI.FirstName</label>
+            @Html.TextBoxFor(m => m.Customer.FirstName, new { @class = "form-control", @readonly = "readonly" })
+            @Html.ValidationMessageFor(m => m.Customer.FirstName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="form-group">
+            <label>@UI.LastName</label>
+            @Html.TextBoxFor(m => m.Customer.LastName, new { @class = "form-control", @readonly = "readonly" })
+            @Html.ValidationMessageFor(m => m.Customer.LastName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+        <div class="form-group">
+            <label>@UI.Email</label>
+            @Html.TextBoxFor(m => m.Customer.Email, new { @class = "form-control", @readonly = "readonly" })
+            @Html.ValidationMessageFor(m => m.Customer.Email, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+        <div class="form-group">
+            <label>@UI.FromPricePlan</label>
+            @Html.TextBoxFor(m => m.FromPricePlan.Name, new { @class = "form-control", @readonly = "readonly" })
+            @Html.ValidationMessageFor(m => m.FromPricePlan.Name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+        <div class="form-group">
+            <label>@UI.ToPricePlan</label>
+            @Html.TextBoxFor(m => m.ToPricePlan.Name, new { @class = "form-control", @readonly = "readonly" })
+            @Html.ValidationMessageFor(m => m.ToPricePlan.Name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+        <div class="form-group">
+            <label>@UI.Status</label>
+            @Html.TextBoxFor(m => m.StatusName, new { @class = "form-control", @readonly = "readonly" })
+            @Html.ValidationMessageFor(m => m.StatusName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+        <div class="form-group">
+            <label>@UI.StartDate</label>
+            @Html.TextBoxFor(m => m.StartDate, new { @class = "form-control", @readonly = "readonly" })
+            @Html.ValidationMessageFor(m => m.StartDate, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+        <div class="form-group">
+            <label>@UI.EndDate</label>
+            @Html.TextBoxFor(m => m.EndDate, new { @class = "form-control", @readonly = "readonly" })
+            @Html.ValidationMessageFor(m => m.EndDate, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+        <div class="form-group">
+            <label>@UI.UsedAnnouncementCount</label>
+            @Html.TextBoxFor(m => m.UsedAnnouncementCount, new { @class = "form-control", @readonly = "readonly" })
+            @Html.ValidationMessageFor(m => m.UsedAnnouncementCount, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,214 @@
+﻿@using PapaStreet.Common.Resources
+@using PapaStreet.Common.Constants;
+@model PapaSreet.AdminUI.Models.AnnouncementViewModel
+
+<div class="row">
+    <div class="col-lg-6">
+        <div class="form-group">
+            <label>@UI.ContactPerson</label>
+            @Html.TextBoxFor(m => m.ContactPerson, new { @class = "form-control", @readonly = "readonly" })
+            @Html.ValidationMessageFor(m => m.ContactPerson, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="form-group">
+            <label>@UI.Email</label>
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @readonly = "readonly" })
+            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <label><i class="icon-phone2"></i> :&nbsp; </label>
+    @foreach (var phone in Model.PhoneNumbers)
+    {
+        <div class="form-group">
+            <div class="badge badge-primary"> @phone.Number</div>
+            <label>&nbsp;</label>
+        </div>
+    }
+</div>
+
+<div class="row">
+    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+        <div class="form-group">
+            <label>@UI.Cities</label>
+            @Html.TextBoxFor(m => m.City.Name, new { @class = "form-control", @readonly = "readonly" })
+            @Html.ValidationMessageFor(m => m.CityId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+        <div class="form-group">
+            <label>@UI.VendorType</label>
+            @Html.TextBoxFor(m => m.VendorType, new { @class = "form-control", @readonly = "readonly" })
+            @Html.ValidationMessageFor(m => m.VendorType, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+        <div class="form-group">
+            <label>@UI.AnnouncementType</label>
+            @Html.TextBoxFor(m => m.AnnouncementType.Name, new { @class = "form-control", @readonly = "readonly" })
+            @Html.ValidationMessageFor(m => m.AnnouncementTypeId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+        <div class="form-group">
+            <label>@UI.PropertyType</label>
+            @Html.TextBoxFor(m => m.PropertyType.Name, new { @class = "form-control", @readonly = "readonly" })
+            @Html.ValidationMessageFor(m => m.PropertyTypeId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+        <div class="form-group">
+            <label>@UI.RoomCount</label>
+            @Html.TextBoxFor(m => m.RoomCount, new { @class = "form-control", @readonly = "readonly" })
+            @Html.ValidationMessageFor(m => m.RoomCount, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+        <div class="form-group">
+            <label>@UI.Area (m<sup>2</sup>)</label>
+            @Html.TextBoxFor(m => m.Area, new { @class = "form-control", @readonly = "readonly" })
+            @Html.ValidationMessageFor(m => m.Area, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+        <div class="form-group">
+            <label>@UI.CurrentFloor</label>
+            @Html.TextBoxFor(m => m.CurrentFloor, new { @class = "form-control", @readonly = "readonly" })
+            @Html.ValidationMessageFor(m => m.CurrentFloor, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+        <div class="form-group">
+            <label>@UI.FloorCount</label>
+            @Html.TextBoxFor(m => m.FloorCount, new { @class = "form-control", @readonly = "readonly" })
+            @Html.ValidationMessageFor(m => m.FloorCount, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+        <div class="form-group">
+            <label>@UI.Amount</label>
+            @Html.TextBoxFor(m => m.Amount, new { @class = "form-control", @readonly = "readonly" })
+            @Html.ValidationMessageFor(m => m.Amount, "", new { @class = "text-danger" })
+        </div>
+    </div>
+</div>
+
+<div class="row">
+
+    @if (Model.AnnouncementAdditionalNames == null)
+    {
+        foreach (var item in ViewBag.AnnouncementAdditionals)
+        {
+            <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2" style="margin-left:10px;">
+                <div class="custom-control custom-checkbox" style="margin-top:10px;">
+                    <input type="checkbox" name="AnnouncementAdditionals[]" class="custom-control-input" value="@item.Id" readonly>
+                    <label class="custom-control-label" for="@item.Id">@item.Name</label>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        foreach (var item in Model.AnnouncementAdditionalNames)
+        {
+            <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2" style="margin-left:10px;">
+                <div class="custom-control custom-checkbox" style="margin-top:10px;">
+                    <input type="checkbox" name="AnnouncementAdditionals[]" class="custom-control-input" checked value="@item" readonly>
+                    <label class="custom-control-label" for="@item">@item</label>
+                </div>
+            </div>
+        }
+    }
+</div>
+<br />
+<br />
+<div class="row">
+    <div class="col-lg-12">
+        <div class="form-group">
+            <label>@UI.PropertyDescription</label>
+            @Html.TextAreaFor(m => m.PropertyDescription, new { @class = "form-control", @readonly = "readonly" })
+            @Html.ValidationMessageFor(m => m.PropertyDescription, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="col-lg-12">
+        <div class="form-group">
+            <label>@UI.Address</label>
+            @Html.TextBoxFor(m => m.Address, new { @class = "form-control", @readonly = "readonly" })
+            @Html.ValidationMessageFor(m => m.Address, "", new { @class = "text-danger" })
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+        <div class="form-group">
+            <label>@UI.PublishDate</label>
+            @Html.TextAreaFor(m => m.PublishedDate, new { @class = "form-control", @readonly = "readonly" })
+            @Html.ValidationMessageFor(m => m.PublishedDate, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+        <div class="form-group">
+            <label>@UI.ExpirationDate</label>
+            @Html.TextBoxFor(m => m.ExpirationDate, new { @class = "form-control", @readonly = "readonly" })
+            @Html.ValidationMessageFor(m => m.ExpirationDate, "", new { @class = "text-danger" })
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="row">
+            @foreach (var item in Model.AnnouncementImages)
+            {
+                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3" style="overflow:hidden;margin-top:10px">
+                    <img src="@item.Base64StringImage" alt="Image" height="200" width="250" />
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<br />
+
+@if (Model != null && Model.Status == Enums.Status.Pending)
+{
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="form-group">
+                <label for="MessageForCustomerId">@UI.MessageForCustomer</label>
+                <textarea class="form-control" id="MessageForCustomerId" rows="5"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="form-group">
+                <div class="d-flex justify-content-start align-items-center">
+                    <button type="button" class="btn btn-light legitRipple"
+                            onclick="RejectAnnouncement('@Model.Id','@Url.Action("Reject","Announcement")')">
+                        @UI.Reject
+                    </button>
+                    <button type="button" class="btn bg-blue ml-3 legitRipple"
+                            onclick="ConfirmAnnouncement('@Model.Id','@Url.Action("Confirm","Announcement")')">
+                        @UI.Confirm
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+}

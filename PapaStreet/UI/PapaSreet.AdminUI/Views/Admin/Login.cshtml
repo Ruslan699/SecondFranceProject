@@ -1,0 +1,64 @@
+﻿@using PapaStreet.Common.Resources
+@using PapaSreet.AdminUI.Models
+@model UserViewModel
+@{
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+<div class="content d-flex justify-content-center align-items-center">
+
+    @using (Ajax.BeginForm("Login", "Admin", FormMethod.Post,
+            new AjaxOptions { OnSuccess = "OnSuccess", OnBegin = "OnLoading", OnFailure = "OnFailure" }, new { @class = "login-form" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="card mb-0">
+            <div class="card-body">
+                <div class="text-center mb-3">
+                    <i class="icon-reading icon-2x text-slate-300 border-slate-300 border-3 rounded-round p-3 mb-3 mt-1"></i>
+                    <h5 class="mb-0">Login to your account</h5>
+                    <span class="d-block text-muted">Admin Panel</span>
+                </div>
+                <div class="form-group form-group-feedback form-group-feedback-left">
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = UI.Email })
+                    <div class="form-control-feedback">
+                        <i class="icon-user text-muted"></i>
+                    </div>
+                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group form-group-feedback form-group-feedback-left">
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = UI.Password })
+                    <div class="form-control-feedback">
+                        <i class="icon-lock2 text-muted"></i>
+                    </div>
+                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block">
+                        <i class="icon-circle-right2 ml-2"></i>
+                         @UI.SignIn
+                    </button>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@section scripts {
+
+    <script type="text/javascript">
+
+        function OnSuccess(response) {
+            if (response.IsSucceed) {
+                location.href = '@Url.Action("Index","Admin")';
+                $("#loading").css('display', 'none');
+            }
+            else {
+                $("#loading").css('display', 'none');
+                $(':input[type="submit"]').prop('disabled', false);
+                alert(response.Description);
+            }
+        }
+    </script>
+}

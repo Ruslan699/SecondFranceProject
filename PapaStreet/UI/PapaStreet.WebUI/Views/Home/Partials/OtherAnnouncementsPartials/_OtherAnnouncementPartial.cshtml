@@ -1,0 +1,63 @@
+﻿@model IEnumerable<PapaStreet.BLL.DTOs.GenericAnnouncementDto>
+@using PapaStreet.Common.Resources
+<section class="section-padding">
+    <div class="section-title text-center mb-5">
+        <h2>@UI.OtherAnnouncements</h2>
+        <div class="line mb-2"></div>
+        @*<p class="container">
+            Leboncoin est le site référent de petites annonces de particulier à particulier et professionnels en France.
+        </p>*@
+    </div>
+
+    <div class="container">
+        <div class="row">
+
+            @foreach (var item in Model)
+            {
+
+                var imgSrc = item.Images?.FirstOrDefault();
+                if (string.IsNullOrEmpty(imgSrc))
+                {
+                    imgSrc = item.SmallImages?.FirstOrDefault();
+                }
+                if (string.IsNullOrEmpty(imgSrc))
+                {
+                    imgSrc = item.LargeUrls?.FirstOrDefault();
+                }
+                if (string.IsNullOrEmpty(imgSrc))
+                {
+                    imgSrc = item.ThumbImages?.FirstOrDefault();
+                }
+                <div class="col-lg-3 col-md-3">
+                    <div class="card card-list">
+                        <a target="_blank" @*href="@item.LinkUrl"*@ href="@Url.Action("item","announcement",new { id = item.Id})">
+                            <div class="card-img">
+                                <div class="badge images-badge"><i class="mdi mdi-image-filter"></i> @(item.ThumbImages?.Count())</div>
+                                <span class="badge badge-primary">@item.HostSite</span>
+                                <img class="card-img-top" style="height:168px !important" src="@(imgSrc)" alt="Card image cap">
+                            </div>
+                            <div class="card-body">
+                                <h2 class="text-primary mb-2 mt-0">
+                                    @foreach (var i in @item.Price)
+                                    {
+                                    <span>@i</span>
+                                     }
+                                    
+                                </h2>
+                                <h5 class="card-title mb-2">@item.Region</h5>
+                                <h6 class="card-subtitle mt-1 mb-0 text-muted"><i class=""></i> @item.Title</h6>
+                            </div>
+                            <div class="card-footer">
+                                @*<span><i class="mdi mdi-sofa"></i> Nombre d'etages: <strong>@item.FloorCount</strong></span>*@
+                                @*<span><i class="mdi mdi-scale-bathroom"></i> Baths : <strong>2</strong></span>*@
+                                @*<span><i class="mdi mdi-move-resize-variant"></i> Superficie totale  : <strong>@item.Area m<sup>2</sup></strong></span>*@
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</section>
+

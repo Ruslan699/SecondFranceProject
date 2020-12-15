@@ -1,0 +1,18 @@
+namespace PapaSreet.AdminUI.Migrations
+{
+    using System;
+    using System.Data.Entity.Migrations;
+    
+    public partial class AddColumnToUsdd : DbMigration
+    {
+        public override void Up()
+        {
+            DropColumn("dbo.Users", "LastName");
+        }
+        
+        public override void Down()
+        {
+            AddColumn("dbo.Users", "LastName", c => c.String(maxLength: 15));
+        }
+    }
+}

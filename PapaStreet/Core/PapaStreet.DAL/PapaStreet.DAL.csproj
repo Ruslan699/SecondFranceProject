@@ -1,0 +1,269 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3729C4E6-4590-4323-B849-F2B012774B2A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PapaStreet.DAL</RootNamespace>
+    <AssemblyName>PapaStreet.DAL</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=8.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AutoMapper.8.0.0\lib\net461\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentValidation, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\FluentValidation.8.0.0\lib\net45\FluentValidation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.Identity.Core.2.2.2\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.2\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.Identity.Owin.2.2.2\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin, Version=4.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Owin.4.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=4.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Owin.Host.SystemWeb.4.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.ComponentModel.Annotations.4.4.1\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.ComponentModel.Primitives, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.ComponentModel.Primitives.4.3.0\lib\net45\System.ComponentModel.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Runtime.CompilerServices.Unsafe.4.5.0\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encoding.CodePages, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Text.Encoding.CodePages.4.5.0\lib\net461\System.Text.Encoding.CodePages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DAOs\AnnouncementDAOs\AnnouncementAdditionDao.cs" />
+    <Compile Include="DAOs\AnnouncementDAOs\AnnouncementDao.cs" />
+    <Compile Include="DAOs\AnnouncementDAOs\AnnouncementImageDao.cs" />
+    <Compile Include="DAOs\AnnouncementDAOs\AnnouncementTypeDao.cs" />
+    <Compile Include="DAOs\BaseDao.cs" />
+    <Compile Include="DAOs\AnnouncementDAOs\CityDao.cs" />
+    <Compile Include="DAOs\CommonDAOs\DepartamentCityDao.cs" />
+    <Compile Include="DAOs\CommonDAOs\RegionDepartamentDao.cs" />
+    <Compile Include="DAOs\CustomerDAOs\CustomerDao.cs" />
+    <Compile Include="DAOs\AnnouncementDAOs\PhoneNumberDao.cs" />
+    <Compile Include="DAOs\AnnouncementDAOs\DocumentTypeDao.cs" />
+    <Compile Include="DAOs\AnnouncementDAOs\PropertyTypeDao.cs" />
+    <Compile Include="DAOs\AnnouncementDAOs\RepairDao.cs" />
+    <Compile Include="DAOs\CustomerDAOs\CustomerPhoneNumberDao.cs" />
+    <Compile Include="DAOs\DepartamentDAOs\DepartamentDao.cs" />
+    <Compile Include="DAOs\OtherAnnouncementDAOs\GenericAnnouncementDao.cs" />
+    <Compile Include="DAOs\IBaseDao.cs" />
+    <Compile Include="DAOs\PricePlanDAOs\FrequencyDao.cs" />
+    <Compile Include="DAOs\PricePlanDAOs\PricePlanDao.cs" />
+    <Compile Include="DAOs\PricePlanDAOs\PricePlanHistoryDao.cs" />
+    <Compile Include="DAOs\RegionDAOs\RegionDao.cs" />
+    <Compile Include="DAOs\UserDAOs\Claims.cs" />
+    <Compile Include="DAOs\UserDAOs\RoleDao.cs" />
+    <Compile Include="DAOs\UserDAOs\RolePermissionDao.cs" />
+    <Compile Include="DAOs\UserDAOs\UserClaimsDao.cs" />
+    <Compile Include="DAOs\UserDAOs\UserDao.cs" />
+    <Compile Include="DAOs\UserDAOs\UserLoginDao.cs" />
+    <Compile Include="DAOs\UserDAOs\UserRoleDao.cs" />
+    <Compile Include="DataContexts\ApplicationDataContext.cs" />
+    <Compile Include="DataContexts\MainDataContext.cs" />
+    <Compile Include="DataContexts\MapperConfig.cs" />
+    <Compile Include="DataContexts\RegisterJsonValueFunctionConvention.cs" />
+    <Compile Include="IdentityMigrations\201904111338049_Migration1.cs" />
+    <Compile Include="IdentityMigrations\201904111338049_Migration1.Designer.cs">
+      <DependentUpon>201904111338049_Migration1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IdentityMigrations\Configuration.cs" />
+    <Compile Include="Migrations\201904111336196_Migration1.cs" />
+    <Compile Include="Migrations\201904111336196_Migration1.Designer.cs">
+      <DependentUpon>201904111336196_Migration1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904120844549_Migration2.cs" />
+    <Compile Include="Migrations\201904120844549_Migration2.Designer.cs">
+      <DependentUpon>201904120844549_Migration2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904181108493_Update1External.cs" />
+    <Compile Include="Migrations\201904181108493_Update1External.Designer.cs">
+      <DependentUpon>201904181108493_Update1External.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904240707402_PublishDataAdded.cs" />
+    <Compile Include="Migrations\201904240707402_PublishDataAdded.Designer.cs">
+      <DependentUpon>201904240707402_PublishDataAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904250955448_AddRegionAndDepartamentTable.cs" />
+    <Compile Include="Migrations\201904250955448_AddRegionAndDepartamentTable.Designer.cs">
+      <DependentUpon>201904250955448_AddRegionAndDepartamentTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904251004366_UpdateRegionAndDepartamentTable.cs" />
+    <Compile Include="Migrations\201904251004366_UpdateRegionAndDepartamentTable.Designer.cs">
+      <DependentUpon>201904251004366_UpdateRegionAndDepartamentTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905010714227_AddedCalculatedColumnPriceDouble.cs" />
+    <Compile Include="Migrations\201905010714227_AddedCalculatedColumnPriceDouble.Designer.cs">
+      <DependentUpon>201905010714227_AddedCalculatedColumnPriceDouble.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905011335186_AddedPricePlan.cs" />
+    <Compile Include="Migrations\201905011335186_AddedPricePlan.Designer.cs">
+      <DependentUpon>201905011335186_AddedPricePlan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905141249412_AddingAdditionalAnnouncementTable.cs" />
+    <Compile Include="Migrations\201905141249412_AddingAdditionalAnnouncementTable.Designer.cs">
+      <DependentUpon>201905141249412_AddingAdditionalAnnouncementTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905170706236_UpdateGenericAnnouncement.cs" />
+    <Compile Include="Migrations\201905170706236_UpdateGenericAnnouncement.Designer.cs">
+      <DependentUpon>201905170706236_UpdateGenericAnnouncement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905230706159_AddZipCodeCityTable.cs" />
+    <Compile Include="Migrations\201905230706159_AddZipCodeCityTable.Designer.cs">
+      <DependentUpon>201905230706159_AddZipCodeCityTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\Announcement\AnnouncementAdditionRepository.cs" />
+    <Compile Include="Repositories\Announcement\AnnouncementImageRepository.cs" />
+    <Compile Include="Repositories\Announcement\AnnouncementRepository.cs" />
+    <Compile Include="Repositories\Announcement\AnnouncementTypeRepository.cs" />
+    <Compile Include="Repositories\BaseRepository.cs" />
+    <Compile Include="Repositories\Announcement\CityRepository.cs" />
+    <Compile Include="Repositories\Common\DepartamentCityRepository.cs" />
+    <Compile Include="Repositories\Common\RegionDepartamentRepository.cs" />
+    <Compile Include="Repositories\Customer\CustomerPhoneNumberRepository.cs" />
+    <Compile Include="Repositories\Customer\CustomerRepository.cs" />
+    <Compile Include="Repositories\Announcement\DocumentTypeRepository.cs" />
+    <Compile Include="Repositories\Announcement\PhoneNumberRepository.cs" />
+    <Compile Include="Repositories\Announcement\PropertyTypeRepository.cs" />
+    <Compile Include="Repositories\Announcement\RepairRepository.cs" />
+    <Compile Include="Repositories\Departament\DepartamentRepository.cs" />
+    <Compile Include="Repositories\Other\GenericAnnouncementRepository.cs" />
+    <Compile Include="Repositories\PricePlan\FrequencyRepository.cs" />
+    <Compile Include="Repositories\PricePlan\PricePlanHistoryRepository.cs" />
+    <Compile Include="Repositories\PricePlan\PricePlanRepository.cs" />
+    <Compile Include="Repositories\Region\RegionRepository.cs" />
+    <Compile Include="Repositories\User\RolePermissionRepository.cs" />
+    <Compile Include="Repositories\User\RoleRepository.cs" />
+    <Compile Include="Repositories\User\UserRepository.cs" />
+    <Compile Include="Utils\ApplicationUserManager.cs" />
+    <Compile Include="Utils\SignInManager.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PapaStreet.BLL\PapaStreet.BLL.csproj">
+      <Project>{0b8e1a05-b540-46f2-bd83-ab93d09c2f3d}</Project>
+      <Name>PapaStreet.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PapaStreet.Common\PapaStreet.Common.csproj">
+      <Project>{DD98045E-28D5-49C3-8A5A-2498788CC663}</Project>
+      <Name>PapaStreet.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="IdentityMigrations\201904111338049_Migration1.resx">
+      <DependentUpon>201904111338049_Migration1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904111336196_Migration1.resx">
+      <DependentUpon>201904111336196_Migration1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904120844549_Migration2.resx">
+      <DependentUpon>201904120844549_Migration2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904181108493_Update1External.resx">
+      <DependentUpon>201904181108493_Update1External.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904240707402_PublishDataAdded.resx">
+      <DependentUpon>201904240707402_PublishDataAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904250955448_AddRegionAndDepartamentTable.resx">
+      <DependentUpon>201904250955448_AddRegionAndDepartamentTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904251004366_UpdateRegionAndDepartamentTable.resx">
+      <DependentUpon>201904251004366_UpdateRegionAndDepartamentTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905010714227_AddedCalculatedColumnPriceDouble.resx">
+      <DependentUpon>201905010714227_AddedCalculatedColumnPriceDouble.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905011335186_AddedPricePlan.resx">
+      <DependentUpon>201905011335186_AddedPricePlan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905141249412_AddingAdditionalAnnouncementTable.resx">
+      <DependentUpon>201905141249412_AddingAdditionalAnnouncementTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905170706236_UpdateGenericAnnouncement.resx">
+      <DependentUpon>201905170706236_UpdateGenericAnnouncement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905230706159_AddZipCodeCityTable.resx">
+      <DependentUpon>201905230706159_AddZipCodeCityTable.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

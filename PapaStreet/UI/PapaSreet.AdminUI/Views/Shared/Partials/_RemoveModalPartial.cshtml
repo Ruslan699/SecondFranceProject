@@ -1,0 +1,40 @@
+﻿@using PapaStreet.Common.Resources
+
+<div id="removeModalId" class="modal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Attention!</h5>
+                <button type="button" class="close" data-dismiss="modal">×</button>
+            </div>
+            @using (Ajax.BeginForm("#", FormMethod.Post,
+                new AjaxOptions { OnSuccess = "OnSuccess", OnBegin = "OnLoading", OnFailure = "OnFailure" },
+                new { @Id = "removeFormId" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.Hidden("id", "", new { @Id = "removeDataId" })
+
+                <div class="modal-body">
+                    Are you sure to remove this data ?
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-link legitRipple" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn bg-primary legitRipple">Remove</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@Scripts.Render("~/bundles/jquery")
+<script>
+    function OnSuccess(data) {
+        if (data.IsSucceed) {
+            location.href = location.href;
+        }
+        else {
+            alert(data.Description);
+        }
+    }
+</script>
